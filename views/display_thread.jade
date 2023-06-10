@@ -1,23 +1,39 @@
 extends layout 
 
 block content
-    h2 #{thread.title}
-    p #{thread.message}
-    p by #{thread.user}, #{thread.date_created}
+  h2 #{thread.title}
+  p #{thread.message}
+  p by #{thread.user}, #{thread.date_created}
 
-    form.form-thread(method="POST" action="")
-        label(for="user") Type User name:
-        input.form-controls(type="text" for="user" id="user" name="user" placeholder="Enter your name here... (optional)")
-        label(for="message") Enter your reply:
-        textarea.form-controls(type="text" for="message" id="message" name="message" placeholder="Enter your message here...")
-        input#date_created.form-controls(type="hidden" value=new Date() name="date_created")
-        input.form-controls(type="hidden" value=thread._id name="thread_id")
-        button#btn-form.form-submit(type="submit") Post A Reply
+  if errors 
+    p We found errors in your submission:
+    ul 
+      for error in errors 
+        li!= error.msg
+
+  form.form-thread(method="POST" action="")
+      label(for="user") Type User name:
+      input.form-controls(type="text" for="user" id="user" name="user" placeholder="Enter your name here... (optional)")
+      label(for="message") Enter your reply:
+      textarea.form-controls(type="text" for="message" id="message" name="message" placeholder="Enter your message here...")
+      input#date_created.form-controls(type="hidden" value=new Date() name="date_created")
+      input.form-controls(type="hidden" value=thread._id name="thread_id")
+      button#btn-form.form-submit(type="submit") Post A Reply
     
-    p Replies: 
-      ul
-        each msg in message 
-            li #{msg.message} 
+  p Replies: 
+    ul
+      each msg in messages
+          li #{msg.message}
+
+  if nextpage > 1 && nextpage != page
+    a(href="/thread/" + thread._id + '/' + nextpage) Next Page
+  else
+    | Next page
+  <br/>
+  if prevpage >= 1
+    a(href="/thread/" + thread._id + '/' + prevpage) Prev Page 
+  else 
+    | Prev Page
 
 
 

@@ -85,14 +85,40 @@ exports.create_thread_post = [
 
 // individual thread display GET
 exports.display_thread_indv = asyncHandler(async (req, res, next) => {
-  const [thread, message] = await Promise.all([
+  const page = req.params.page || 1
+  const skipped = (page - 1) * 10
+
+  const [thread, msgsCount, messages] = await Promise.all([
     Thread.findById(req.params.id)
      .exec(),
     Message.find({ thread_id: req.params.id })
-    .sort({date_created: 1})
-    .exec()])
+     .countDocuments(),
+    Message.find({ thread_id: req.params.id })
+     .limit(10)
+     .skip(skipped)
+     .sort({date_created: "asc"})
+     .exec()])
 
-  res.render('display_thread', { thread: thread, message: message })
+  if (msgsCount > 10) {
+  
+    const pageInt = parseInt(page)
+    const lastpage = () => {
+      const getLastPage = Math.trunc(msgsCount / 10)
+      const checkRemainder = () => {
+        if (msgsCount % 10 !== 0) {
+          return 1
+        }
+        return 0
+      }
+      return getLastPage + checkRemainder()
+    }
+    const prevpage = parseInt(page) - 1
+    const nextpage = () => { return pageInt < lastpage() ? pageInt + 1 : lastpage()}
+    
+    res.render('display_thread', { thread: thread, messages: messages, page: page, nextpage: nextpage(), prevpage: prevpage })
+  } else {
+    res.render('display_thread', { thread: thread, messages: messages })
+  }
 })
 
 // post a reply POST
@@ -109,11 +135,42 @@ exports.create_reply = [
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req)
 
-    const message = new Message({user: req.body.user, message: req.body.message, date_created: req.body.date_create, thread_id: req.body.thread_id})
+    const message = new Message({user: req.body.user, message: req.body.message, date_created: req.body.date_created, thread_id: req.body.thread_id})
+
     if (!errors.isEmpty()) {
-      res.render("display_thread", {
-        errors: errors.array()
-      })
+      const page = req.params.page || 1
+      const skipped = (page - 1) * 10
+    
+      const [thread, msgsCount, messages] = await Promise.all([
+        Thread.findById(req.params.id)
+         .exec(),
+        Message.countDocuments(),
+        Message.find({ thread_id: req.params.id })
+          .limit(10)
+          .skip(skipped)
+          .sort({date_created: "desc"})
+          .exec()])
+    
+      if (msgsCount > 10) {
+      
+        const pageInt = parseInt(page)
+        const lastpage = () => {
+          const getLastPage = Math.trunc(msgsCount / 10)
+          const checkRemainder = () => {
+            if (msgsCount % 10 !== 0) {
+              return 1
+            }
+            return 0
+          }
+          return getLastPage + checkRemainder()
+        }
+        const prevpage = parseInt(page) - 1
+        const nextpage = () => { return pageInt < lastpage() ? pageInt + 1 : lastpage()}
+        
+        res.render('display_thread', { thread: thread, messages: messages, page: page, nextpage: nextpage(), prevpage: prevpage, errors: errors.array() })
+      } else {
+        res.render('display_thread', { thread: thread, messages: messages, errors: errors.array() })
+      }
       return
     } else {
       await message.save()
