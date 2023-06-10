@@ -3,25 +3,20 @@ const Message = require("../models/message_model")
 const asyncHandler = require("express-async-handler")
 const { body, validationResult } = require("express-validator");
 
-// exports.display_thread = asyncHandler(async (req, res, next) => {
-//   const allThreads = await Thread.find()
-//     .sort({date_created: "desc"})
-//     .limit(10)
-//     .exec()
-//   res.render("index", { threads: allThreads })
-// })
-
 exports.display_thread = asyncHandler(async (req, res, next) => {
   const page = req.params.page || 1
   const skipped = (page - 1) * 10
 
-  const [threadsCount, threadsRes] = await Promise.all([
+  const [threadsCount, threadsRes, recentMsgs] = await Promise.all([
     Thread.countDocuments(),
     Thread.find()
       .limit(10)
       .skip(skipped)
       .sort({date_created: "desc"})
-      .exec()])
+      .exec(),
+    Message.find()
+      .sort({date_created: "desc"})
+      .limit(5)])
   
   if (threadsCount > 10) {
 
@@ -39,7 +34,7 @@ exports.display_thread = asyncHandler(async (req, res, next) => {
     const prevpage = parseInt(page) - 1
     const nextpage = () => { return pageInt < lastpage() ? pageInt + 1 : lastpage()}
 
-    res.render("index", { count: threadsCount, threads: threadsRes, page: page, nextpage: nextpage(), prevpage: prevpage})
+    res.render("index", { count: threadsCount, threads: threadsRes, messages: recentMsgs, page: page, nextpage: nextpage(), prevpage: prevpage})
   } else {
     res.render("index", { count: threadsCount, threads: threadsRes})
   }

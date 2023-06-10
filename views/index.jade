@@ -1,25 +1,33 @@
 extends layout
 
 block content
-  p Display all messages here
-  a(href='/thread/new') Create a thread
-  h2 Latest Threads
+  div#sidebar-content
+    div#create-thread-wrapper
+      a#create-thread-link(href='/thread/new') Create a thread
+    div#recent-content
+      h2 Recent Replies
+      ul 
+        each msg in messages 
+          li
+            p #{msg.message}
+  div#main-content
+    h2 Latest Threads
+    ul 
+      each thread in threads
+        li 
+          a(target="_self" href="/thread/" + thread._id) #{thread.title} </a> by #{thread.user}
+          p #{thread.date_created}
+      else 
+        li There are no threads
 
-  ul 
-    each thread in threads
-      li 
-        a(target="_self" href="/thread/" + thread._id) #{thread.title} </a> by #{thread.user}
-        p #{thread.date_created}
-    else 
-      li There are no threads
-
-  if nextpage > 1 && nextpage != page
-    a(href="/page/" + nextpage) Next Page
-  else
-    | Next page
-  <br/>
-  if prevpage >= 1
-    a(href="/page/" + prevpage) Prev Page 
-  else 
-    | Prev Page
+    div#thread-controls
+      div#page-threads
+        if prevpage >= 1
+          a.page-controls(href="/page/" + prevpage) Prev Page 
+        else 
+          p.page-controls Prev Page
+        if nextpage > 1 && nextpage != page
+          a.page-controls(href="/page/" + nextpage) Next Page
+        else
+          p.page-controls Next page
 

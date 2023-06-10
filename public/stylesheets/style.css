@@ -1,10 +1,53 @@
 body {
-  padding: 50px;
+  padding: 0px;
+  margin: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+  text-decoration: none;
+  margin: 0px;
+}
+
+h1,
+p {
+  margin: 0px;
+}
+
+#header-wrapper {
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#footer-container {
+  text-align: center;
+}
+
+#footer-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#thread-controls {
+  display: flex;
+}
+
+#create-thread-link {
+  margin: 0px 10px;
+}
+
+#page-threads {
+  display: flex;
+  margin-left: auto
+}
+
+.page-controls {
+  margin: 0px 10px;
 }
 
 .form-thread {

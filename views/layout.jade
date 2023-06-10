@@ -1,12 +1,18 @@
 doctype html
 html
   head
-    title= title
+    title converse.me
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='icon', type='image/x-icon' href='/images/favicon.ico')
   body
-    header
+    header#header-container
       div#header-wrapper
+        a#title-text-wrapper(href="/")
+          h1#title-text converse.me
+        p#title-tag Share and Discuss.
+    div#content-container
+      block content
+    footer#footer-container
+      p#footer-text © coffeedevr | 
         a(href="/")
-          h1 Mini Threads
-    block content
-    footer
+          img#github-logo(src="/images/githublogo.png" height="30px" width="30px")
