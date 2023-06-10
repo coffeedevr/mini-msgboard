@@ -12,8 +12,6 @@ const { body, validationResult } = require("express-validator");
 // })
 
 exports.display_thread = asyncHandler(async (req, res, next) => {
-
-  
   const page = req.params.page || 1
   const skipped = (page - 1) * 10
 
@@ -25,7 +23,26 @@ exports.display_thread = asyncHandler(async (req, res, next) => {
       .sort({date_created: "desc"})
       .exec()])
   
-  res.render("index", { count: threadsCount, threads: threadsRes })
+  if (threadsCount > 10) {
+
+    const pageInt = parseInt(page)
+    const lastpage = () => {
+      const getLastPage = Math.trunc(threadsCount / 10)
+      const checkRemainder = () => {
+        if (threadsCount % 10 !== 0) {
+          return 1
+        }
+        return 0
+      }
+      return getLastPage + checkRemainder()
+    }
+    const prevpage = parseInt(page) - 1
+    const nextpage = () => { return pageInt < lastpage() ? pageInt + 1 : lastpage()}
+
+    res.render("index", { count: threadsCount, threads: threadsRes, page: page, nextpage: nextpage(), prevpage: prevpage})
+  } else {
+    res.render("index", { count: threadsCount, threads: threadsRes})
+  }
 })
 
 // display create thread form GET

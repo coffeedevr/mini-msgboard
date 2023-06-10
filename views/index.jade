@@ -13,6 +13,13 @@ block content
     else 
       li There are no threads
 
-  if threads.length > 10
-  
+  if nextpage > 1 && nextpage != page
+    a(href="/page/" + nextpage) Next Page
+  else
+    | Next page
+  <br/>
+  if prevpage >= 1
+    a(href="/page/" + prevpage) Prev Page 
+  else 
+    | Prev Page
 
