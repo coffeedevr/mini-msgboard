@@ -1,0 +1,19 @@
+extends layout 
+
+block content
+
+  if errors 
+    p We found errors in your submission:
+    ul 
+      for error in errors 
+        li!= error.msg
+
+  form.form-thread(method="POST" action="")
+    label(for="user") Type User name:
+    input.form-controls(type="text" for="user" id="user" name="user" placeholder="Enter your name here... (optional)")
+    label(for="title") Enter the thread name:
+    input.form-controls(type="text" for="title" id="title" name="title" placeholder="Enter thread name here...")
+    label(for="message") Enter your message:
+    textarea.form-controls(type="text" for="message" id="message" name="message" placeholder="Enter your message here...")
+    input#date_created.form-controls(type="hidden" value=new Date() name="date_created")
+    button#btn-form.form-submit(type="submit") Submit Thread
