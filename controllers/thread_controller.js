@@ -3,10 +3,29 @@ const Message = require("../models/message_model")
 const asyncHandler = require("express-async-handler")
 const { body, validationResult } = require("express-validator");
 
+// exports.display_thread = asyncHandler(async (req, res, next) => {
+//   const allThreads = await Thread.find()
+//     .sort({date_created: "desc"})
+//     .limit(10)
+//     .exec()
+//   res.render("index", { threads: allThreads })
+// })
+
 exports.display_thread = asyncHandler(async (req, res, next) => {
-  const allThreads = await Thread.find()
-    .exec()
-  res.render("index", { threads: allThreads })
+
+  
+  const page = req.params.page || 1
+  const skipped = (page - 1) * 10
+
+  const [threadsCount, threadsRes] = await Promise.all([
+    Thread.countDocuments(),
+    Thread.find()
+      .limit(10)
+      .skip(skipped)
+      .sort({date_created: "desc"})
+      .exec()])
+  
+  res.render("index", { count: threadsCount, threads: threadsRes })
 })
 
 // display create thread form GET
@@ -50,7 +69,8 @@ exports.create_thread_post = [
 // individual thread display GET
 exports.display_thread_indv = asyncHandler(async (req, res, next) => {
   const [thread, message] = await Promise.all([
-    Thread.findById(req.params.id).exec(),
+    Thread.findById(req.params.id)
+     .exec(),
     Message.find({ thread_id: req.params.id })
     .sort({date_created: 1})
     .exec()])

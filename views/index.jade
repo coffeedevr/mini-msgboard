@@ -3,7 +3,7 @@ extends layout
 block content
   p Display all messages here
   a(href='/thread/new') Create a thread
-  h2 List of threads:
+  h2 Latest Threads
 
   ul 
     each thread in threads
@@ -12,4 +12,7 @@ block content
         p #{thread.date_created}
     else 
       li There are no threads
+
+  if threads.length > 10
+  
 

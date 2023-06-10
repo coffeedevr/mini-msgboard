@@ -9,7 +9,7 @@ const ThreadSchema = new Schema({
 }, { collection: 'threads' })
 
 ThreadSchema.virtual("date_created_formatted").get(function() {
-    return `Fixed date`
+    
 })
 
 module.exports = mongoose.model("Thread", ThreadSchema)

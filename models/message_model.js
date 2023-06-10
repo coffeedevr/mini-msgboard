@@ -9,7 +9,7 @@ const MessageSchema = new Schema({
 }, { collection: 'messages' })
 
 MessageSchema.virtual("date_created_formatted").get(function() {
-    return `Fixed date`
+    
 })
 
 module.exports = mongoose.model("Message", MessageSchema)
