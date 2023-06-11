@@ -1,28 +1,28 @@
 extends layout
 
 block content
-  div#sidebar-content
-    div#recent-content
-      div#sidebar-header
-        h2#sidebar-title-text Recent Replies
-      ul 
-        each msg in messages 
-          li
-            p #{msg.message}
-            a(target="_self" href="/thread/" + msg.thread_id) Visit thread.
-        else
-          li No replies.
   div#main-content
     div#main-header
       h2 Latest Threads
       div#create-thread-wrapper
         a#create-thread-link(href='/thread/new')
           h2 + Create a thread
-    ul 
-      each thread in threads
-        li.thread-list 
-          a#thread-title(target="_self" href="/thread/" + thread._id) #{thread.title} 
-          p#thread-user submitted by #{thread.user} at #{thread.date_created_formatted}
+    div#main-threads-wrapper
+    ul#thread-list 
+      each thread, key in threads
+        li#thread-elements
+          p#thread-num= (key + 1) + '.'
+          a#thread-title(target="_self" href="/thread/" + thread._id)
+            if thread.flair == 'Discussion'
+              img#thread-logo(src="/images/thread-discuss.png")
+            if thread.flair == 'General'
+              img#thread-logo(src="/images/thread-general.png")
+            if thread.flair == 'Question'
+              img#thread-logo(src="/images/thread-question.png")
+            p #{thread.title}
+              <span id="thread-flair"> #{thread.flair} </span>
+          p#thread-user submitted by #{thread.user}
+            <span> #{thread.date_created_formatted} </span>
       else 
         li There are no threads
 
@@ -36,4 +36,15 @@ block content
           a.page-controls(href="/page/" + nextpage) Next Page
         else
           p.page-controls Next page
+  div#sidebar-content
+    div#recent-content
+      div#sidebar-header
+        h2#sidebar-title-text Recent Replies
+      ul 
+        each msg in messages 
+          li
+            p #{msg.message}
+            a(target="_self" href="/thread/" + msg.thread_id) Visit thread.
+        else
+          li No replies.
 

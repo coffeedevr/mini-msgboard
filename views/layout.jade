@@ -5,14 +5,17 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='icon', type='image/x-icon' href='/images/favicon.ico')
   body
-    header#header-container
-      div#header-wrapper
-        a#title-text-wrapper(href="/")
-          h1#title-text converse.me
-        p#title-tag Share and Discuss.
-    div#content-container
-      block content
-    footer#footer-container
-      p#footer-text © coffeedevr | 
-        a(href="/")
-          img#github-logo(src="/images/githublogo.png" height="30px" width="30px")
+    div#page-container
+      header#header-container
+        div#header-wrapper
+          a#title-text-wrapper(href="/")
+            img#site-logo(src="/images/converse-logo.png")
+            h1#title-text converse.me
+          p#title-tag Share and Discuss.
+      div#content-container
+        block content
+      footer#footer-container
+        p#footer-text= '© ' + (new Date().getFullYear()) + ' coffeedevr | '
+          a(href="/")
+            img#github-logo(src="/images/githublogo.png" height="30px" width="30px")
+        p#footer-text-two This project is made using Express, MongoDB and Jade. <br/> All icons used are not mine.
