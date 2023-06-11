@@ -140,6 +140,10 @@ ul {
   border-radius: 20px;
 }
 
+#thread-pages {
+  font-size: 0.8rem;
+}
+
 #footer-container {
   text-align: center;
   bottom: 0;

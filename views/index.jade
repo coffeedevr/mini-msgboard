@@ -11,16 +11,25 @@ block content
     ul#thread-list 
       each thread, key in threads
         li#thread-elements
-          a#thread-title(target="_self" href="/thread/" + thread._id)
-            if thread.flair == 'Discussion'
-              img#thread-logo(src="/images/thread-discuss.png")
-            if thread.flair == 'General'
-              img#thread-logo(src="/images/thread-general.png")
-            if thread.flair == 'Question'
-              img#thread-logo(src="/images/thread-question.png")
-            p #{thread.title}
-              <span id="thread-flair"> #{thread.flair} </span>
-            p #{threadpage[0]}
+          div#thread-title-wrapper
+            a#thread-title(target="_self" href="/thread/" + thread._id)
+              if thread.flair == 'Discussion'
+                img#thread-logo(src="/images/thread-discuss.png")
+              if thread.flair == 'General'
+                img#thread-logo(src="/images/thread-general.png")
+              if thread.flair == 'Question'
+                img#thread-logo(src="/images/thread-question.png")
+              p #{thread.title}
+                <span id="thread-flair"> #{thread.flair} </span>
+            p#thread-pages= 'Jump to: '
+              - for (let i = 1; i <= threadpage[key]; i++) {
+                -  if (i > 5) {
+                    a(href='/thread/' + thread._id + '/' + i)= '[...' + threadpage[key] + ']' 
+                -    break 
+                - }   else { 
+                    a(href='/thread/' + thread._id + '/' + i)= '[' + i + '] '
+                -   }
+              - }
           p#thread-user submitted by #{thread.user}
             <span> #{thread.date_created_formatted} </span>
       else 
