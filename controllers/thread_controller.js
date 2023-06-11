@@ -6,6 +6,7 @@ const { body, validationResult } = require("express-validator");
 exports.display_thread = asyncHandler(async (req, res, next) => {
   const page = req.params.page || 1
   const skipped = (page - 1) * 10
+  const pageArr = [];
 
   const [threadsCount, threadsRes, recentMsgs] = await Promise.all([
     Thread.countDocuments(),
@@ -17,26 +18,40 @@ exports.display_thread = asyncHandler(async (req, res, next) => {
     Message.find()
       .sort({date_created: "desc"})
       .limit(5)])
+
+  const fetchMsgCount = await Promise.all(
+    threadsRes.map( x => Message.countDocuments({ thread_id: x._id }))
+  )
+
+  fetchMsgCount.forEach( x => {
+    if ( x > 10 ) {
+      const lastpage = () => {
+        const getLastPage = Math.trunc(x / 10)
+        const checkRemainder = () => {
+          return x % 10 !== 0 ? 1 : 0
+        }
+        return getLastPage + checkRemainder()
+      }
+      pageArr.push(lastpage())
+    } else { 
+      pageArr.push(1)
+    }
+  })
   
   if (threadsCount > 10) {
-
     const pageInt = parseInt(page)
     const lastpage = () => {
       const getLastPage = Math.trunc(threadsCount / 10)
       const checkRemainder = () => {
-        if (threadsCount % 10 !== 0) {
-          return 1
-        }
-        return 0
+        return threadsCount % 10 !== 0 ? 1 : 0
       }
       return getLastPage + checkRemainder()
     }
     const prevpage = parseInt(page) - 1
     const nextpage = () => { return pageInt < lastpage() ? pageInt + 1 : lastpage()}
-
-    res.render("index", { count: threadsCount, threads: threadsRes, messages: recentMsgs, page: page, nextpage: nextpage(), prevpage: prevpage})
+    res.render("index", { count: threadsCount, threads: threadsRes, messages: recentMsgs, page: page, nextpage: nextpage(), prevpage: prevpage, threadpage: pageArr})
   } else {
-    res.render("index", { count: threadsCount, threads: threadsRes, messages: recentMsgs})
+    res.render("index", { count: threadsCount, threads: threadsRes, messages: recentMsgs, threadpage: pageArr})
   }
 })
 
@@ -64,7 +79,6 @@ exports.create_thread_post = [
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req)
-
     const thread = new Thread({user: req.body.user, title: req.body.title, message: req.body.message, date_created: req.body.date_created, flair: req.body.flair})
 
     if (!errors.isEmpty()) {
@@ -95,15 +109,11 @@ exports.display_thread_indv = asyncHandler(async (req, res, next) => {
      .exec()])
 
   if (msgsCount > 10) {
-  
     const pageInt = parseInt(page)
     const lastpage = () => {
       const getLastPage = Math.trunc(msgsCount / 10)
       const checkRemainder = () => {
-        if (msgsCount % 10 !== 0) {
-          return 1
-        }
-        return 0
+        return msgsCount % 10 !== 0 ? 1 : 0
       }
       return getLastPage + checkRemainder()
     }
@@ -152,10 +162,7 @@ exports.create_reply = [
         const lastpage = () => {
           const getLastPage = Math.trunc(msgsCount / 10)
           const checkRemainder = () => {
-            if (msgsCount % 10 !== 0) {
-              return 1
-            }
-            return 0
+            return msgsCount % 10 !== 0 ? 1 : 0
           }
           return getLastPage + checkRemainder()
         }

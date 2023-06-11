@@ -11,7 +11,6 @@ block content
     ul#thread-list 
       each thread, key in threads
         li#thread-elements
-          p#thread-num= (key + 1) + '.'
           a#thread-title(target="_self" href="/thread/" + thread._id)
             if thread.flair == 'Discussion'
               img#thread-logo(src="/images/thread-discuss.png")
@@ -21,6 +20,7 @@ block content
               img#thread-logo(src="/images/thread-question.png")
             p #{thread.title}
               <span id="thread-flair"> #{thread.flair} </span>
+            p #{threadpage[0]}
           p#thread-user submitted by #{thread.user}
             <span> #{thread.date_created_formatted} </span>
       else 
@@ -29,13 +29,13 @@ block content
     div#thread-controls
       div#page-threads
         if prevpage >= 1
-          a.page-controls(href="/page/" + prevpage) Prev Page 
+          a.page-controls(href="/page/" + prevpage) Prev Page
         else 
-          p.page-controls Prev Page
+          p.page-controls
         if nextpage > 1 && nextpage != page
           a.page-controls(href="/page/" + nextpage) Next Page
         else
-          p.page-controls Next page
+          p.page-controls
   div#sidebar-content
     div#recent-content
       div#sidebar-header
