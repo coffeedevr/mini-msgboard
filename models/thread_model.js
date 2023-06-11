@@ -7,7 +7,8 @@ const ThreadSchema = new Schema({
     title: { type: String, maxLength: 32, required: true},
     message: { type: String, maxLength: 360, required: true},
     date_created: { type: Date },
-    flair: { type: String }
+    flair: { type: String, required: true },
+    tags: [{type: String}]
 }, { collection: 'threads' })
 
 ThreadSchema.virtual("date_created_formatted").get(function() {

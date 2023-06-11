@@ -15,5 +15,10 @@ block content
     input.form-controls(type="text" for="title" id="title" name="title" placeholder="Enter thread name here...")
     label(for="message") Enter your message:
     textarea.form-controls(type="text" for="message" id="message" name="message" placeholder="Enter your message here...")
+    label(for="flair") Select flair: 
+    select(name="flair" id="flair")
+      option(value="General") General 
+      option(value="Discussion") Discussion 
+      option(value="Question") Question
     input#date_created.form-controls(type="hidden" value=new Date() name="date_created")
     button#btn-form.form-submit(type="submit") Submit Thread

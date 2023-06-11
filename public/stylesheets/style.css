@@ -30,7 +30,8 @@ li {
   background-color: #00B7FF;
   color: white;
   align-items: center;
-  padding: 10px 15px;
+  padding: 5px 15px;
+  height: 65px;
 }
 
 #main-header h2 {
@@ -51,6 +52,20 @@ li {
   width: 300px;
   margin: 10px;
   align-self: flex-start;
+}
+
+#sidebar-header {
+  padding: 5px 15px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  background-color: #00B7FF;
+  color: white;
+}
+
+#sidebar-title-text {
+  margin: 0px;
+  font-size: 1.5rem;
 }
 
 #main-content {
@@ -76,6 +91,12 @@ li {
 
 .thread-list {
   padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+#thread-user {
+  margin-left: auto;
 }
 
 #thread-title {

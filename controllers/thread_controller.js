@@ -36,7 +36,7 @@ exports.display_thread = asyncHandler(async (req, res, next) => {
 
     res.render("index", { count: threadsCount, threads: threadsRes, messages: recentMsgs, page: page, nextpage: nextpage(), prevpage: prevpage})
   } else {
-    res.render("index", { count: threadsCount, threads: threadsRes})
+    res.render("index", { count: threadsCount, threads: threadsRes, messages: recentMsgs})
   }
 })
 
@@ -65,7 +65,7 @@ exports.create_thread_post = [
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req)
 
-    const thread = new Thread({user: req.body.user, title: req.body.title, message: req.body.message, date_created: req.body.date_created})
+    const thread = new Thread({user: req.body.user, title: req.body.title, message: req.body.message, date_created: req.body.date_created, flair: req.body.flair})
 
     if (!errors.isEmpty()) {
       res.render("create_thread", {

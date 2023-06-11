@@ -3,12 +3,15 @@ extends layout
 block content
   div#sidebar-content
     div#recent-content
-      h2 Recent Replies
+      div#sidebar-header
+        h2#sidebar-title-text Recent Replies
       ul 
         each msg in messages 
           li
             p #{msg.message}
             a(target="_self" href="/thread/" + msg.thread_id) Visit thread.
+        else
+          li No replies.
   div#main-content
     div#main-header
       h2 Latest Threads
@@ -18,8 +21,8 @@ block content
     ul 
       each thread in threads
         li.thread-list 
-          a#thread-title(target="_self" href="/thread/" + thread._id) #{thread.title}
-          p#thread-user posted by User #{thread.user} at #{thread.date_created_formatted}
+          a#thread-title(target="_self" href="/thread/" + thread._id) #{thread.title} 
+          p#thread-user submitted by #{thread.user} at #{thread.date_created_formatted}
       else 
         li There are no threads
 
