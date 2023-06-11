@@ -2,21 +2,24 @@ extends layout
 
 block content
   div#sidebar-content
-    div#create-thread-wrapper
-      a#create-thread-link(href='/thread/new') Create a thread
     div#recent-content
       h2 Recent Replies
       ul 
         each msg in messages 
           li
             p #{msg.message}
+            a(target="_self" href="/thread/" + msg.thread_id) Visit thread.
   div#main-content
-    h2 Latest Threads
+    div#main-header
+      h2 Latest Threads
+      div#create-thread-wrapper
+        a#create-thread-link(href='/thread/new')
+          h2 + Create a thread
     ul 
       each thread in threads
-        li 
-          a(target="_self" href="/thread/" + thread._id) #{thread.title} </a> by #{thread.user}
-          p #{thread.date_created}
+        li.thread-list 
+          a#thread-title(target="_self" href="/thread/" + thread._id) #{thread.title}
+          p#thread-user posted by User #{thread.user} at #{thread.date_created_formatted}
       else 
         li There are no threads
 

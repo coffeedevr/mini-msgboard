@@ -23,7 +23,7 @@ block content
   p Replies: 
     ul
       each msg in messages
-          li #{msg.message}
+          li(id=msg._id) #{msg.message}
 
   if nextpage > 1 && nextpage != page
     a(href="/thread/" + thread._id + '/' + nextpage) Next Page

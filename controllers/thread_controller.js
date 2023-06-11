@@ -49,13 +49,13 @@ exports.create_thread_get = asyncHandler(async (req, res, next) => {
 exports.create_thread_post = [
 
   //sanitize data using validator
-  body("title", "Thread name must consist of between 2 to 32 characters")
+  body("title", "Thread name must consist of between 5 to 32 characters")
     .trim()
     .isLength({ min: 2, max:32 })
     .escape(),
-  body("message", "Thread message must consist of between 2 to 320 characters")
+  body("message", "Thread message must const of at least 3 characters")
     .trim()
-    .isLength({ min: 2, max:320 })
+    .isLength({ min: 3 })
     .escape(),
   body("user", "Name must consist of between 2 to 32 characters")
     .trim()
