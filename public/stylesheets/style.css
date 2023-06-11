@@ -119,6 +119,7 @@ ul {
   flex-direction: column;
   align-items: flex-end;
   margin-left: auto;
+  text-align: right;
 }
 
 #thread-title {

@@ -30,8 +30,7 @@ block content
                     a(href='/thread/' + thread._id + '/' + i)= '[' + i + '] '
                 -   }
               - }
-          p#thread-user submitted by #{thread.user}
-            <span> #{thread.date_created_formatted} </span>
+          p#thread-user posted #{thread.date_created_formatted} <br/> thread by #{thread.user}
       else 
         li There are no threads
 
