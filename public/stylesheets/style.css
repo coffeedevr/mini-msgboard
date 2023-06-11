@@ -116,8 +116,12 @@ ul {
 
 #thread-user {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  margin-top: 5px;
+}
+
+#thread-last-reply {
+  display: flex;
+  margin-top: 5px;
   margin-left: auto;
   text-align: right;
 }
@@ -126,7 +130,7 @@ ul {
   display: flex;
   align-items: center;
   font-size: 1.2rem;
-  gap: 10px;
+  gap: 5px;
 }
 
 #thread-logo {
@@ -136,13 +140,27 @@ ul {
 #thread-flair {
   background-color: grey;
   color: white;
-  font-size: 0.9rem;
-  padding: 10px;
-  border-radius: 20px;
+  font-size: 0.8rem;
+  padding: 5px;
+  border-radius: 5%;
+  text-align: center;
+}
+
+#thread-details {
+  display: flex;
+  gap: 5px;
 }
 
 #thread-pages {
+  display: flex;
   font-size: 0.8rem;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.thread-page-links {
+  margin-top: 5px;
+  margin-left: 5px;
 }
 
 #footer-container {
