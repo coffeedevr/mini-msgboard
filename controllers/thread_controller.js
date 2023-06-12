@@ -4,7 +4,8 @@ const asyncHandler = require("express-async-handler")
 const { body, validationResult } = require("express-validator");
 
 exports.display_thread = asyncHandler(async (req, res, next) => {
-  const page = req.params.page || 1
+  const page = req.query.page || 1
+  const order = req.query.order || 'desc'
   const skipped = (page - 1) * 10
   const pageArr = [];
 
@@ -13,7 +14,7 @@ exports.display_thread = asyncHandler(async (req, res, next) => {
     Thread.find()
       .limit(10)
       .skip(skipped)
-      .sort({date_created: "desc"})
+      .sort({date_created: order})
       .exec(),
     Message.find()
       .sort({date_created: "desc"})

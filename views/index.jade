@@ -44,11 +44,11 @@ block content
     div#thread-controls
       div#page-threads
         if prevpage >= 1
-          a.page-controls(href="/page/" + prevpage) Prev Page
+          a.page-controls(href="/?page=" + prevpage) Prev
         else 
           p.page-controls
         if nextpage > 1 && nextpage != page
-          a.page-controls(href="/page/" + nextpage) Next Page
+          a.page-controls(href="/?page=" + nextpage) Next
         else
           p.page-controls
   div#sidebar-content

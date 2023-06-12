@@ -12,7 +12,6 @@ const ThreadSchema = new Schema({
 }, { collection: 'threads' })
 
 ThreadSchema.virtual("date_created_formatted").get(function() {
-  // return DateTime.fromISO(this.date_created.toISOString()).toLocaleString(DateTime.DATETIME_MED)
   const currentDate = DateTime.fromISO(new Date().toISOString())
   const dateCreation = DateTime.fromISO(this.date_created.toISOString())
   const res = Interval.fromDateTimes(dateCreation, currentDate)
