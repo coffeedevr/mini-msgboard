@@ -245,13 +245,11 @@ li {
 
 .recent-replies-msg {
   font-size: 0.9rem;
-  
 }
 
 .recent-replies-user {
   font-size: 0.75rem;
   color: gray;
-  font-style: italic;
 }
 
 .recent-replies-user > a {
@@ -303,11 +301,11 @@ li {
 .form-thread {
   display: flex;
   flex-direction: column;
+  color: white;
 }
 
 .form-controls {
   font-size: 1rem;
-  width: 50%;
   margin: 10px 0;
   padding: 3px;
 }

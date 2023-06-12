@@ -97,7 +97,7 @@ exports.create_thread_post = [
 
 // view thread display GET
 exports.display_thread_indv = asyncHandler(async (req, res, next) => {
-  const page = req.query.page
+  const page = req.query.page || 1
   const skipped = (page - 1) * 10
 
   const [thread, msgsCount, messages] = await Promise.all([
@@ -133,11 +133,11 @@ exports.display_thread_indv = asyncHandler(async (req, res, next) => {
 exports.create_reply = [
   body("user", "Name must consist of between 2 to 32 characters")
     .trim()
-    .isLength({ min: 2, max:32 })
+    .isLength({ min: 2, max: 32 })
     .escape(),
   body("message", "Thread message must consist of between 2 to 320 characters")
     .trim()
-    .isLength({ min: 2, max:320 })
+    .isLength({ min: 2, max: 320 })
     .escape(),
 
   asyncHandler(async (req, res, next) => {
@@ -145,15 +145,18 @@ exports.create_reply = [
 
     const message = new Message({user: req.body.user, message: req.body.message, date_created: req.body.date_created, thread_id: req.body.thread_id})
 
+    let getLastPage;
+
     if (!errors.isEmpty()) {
-      const page = req.params.page || 1
+      const page = req.query.page
+      const threadId = req.query.thread
       const skipped = (page - 1) * 10
     
       const [thread, msgsCount, messages] = await Promise.all([
-        Thread.findById(req.params.id)
+        Thread.findById(threadId)
          .exec(),
         Message.countDocuments(),
-        Message.find({ thread_id: req.params.id })
+        Message.find({ thread_id: threadId })
           .limit(10)
           .skip(skipped)
           .sort({date_created: "desc"})
@@ -169,8 +172,11 @@ exports.create_reply = [
           }
           return getLastPage + checkRemainder()
         }
+
+        getLastPage = lastpage()
+
         const prevpage = parseInt(page) - 1
-        const nextpage = () => { return pageInt < lastpage() ? pageInt + 1 : lastpage()}
+        const nextpage = () => { return pageInt < getLastPage ? pageInt + 1 : getLastPage}
         
         res.render('display_thread', { thread: thread, messages: messages, page: page, nextpage: nextpage(), prevpage: prevpage, errors: errors.array() })
       } else {
@@ -179,6 +185,6 @@ exports.create_reply = [
       return
     } else {
       await message.save()
-      res.redirect('/thread/' + req.body.thread_id)
+      res.redirect('/view/?thread=' + req.body.thread_id)
     }
 })]
