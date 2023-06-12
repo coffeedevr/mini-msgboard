@@ -2,10 +2,10 @@ const Thread = require("../models/thread_model")
 const Message = require("../models/message_model")
 const asyncHandler = require("express-async-handler")
 const { body, validationResult } = require("express-validator");
+const session = require('express-session')
 
 exports.display_thread = asyncHandler(async (req, res, next) => {
-  const page = req.query.page || 1
-  const order = req.query.order || 'desc'
+  const page = req.query.page
   const skipped = (page - 1) * 10
   const pageArr = [];
 
@@ -14,7 +14,7 @@ exports.display_thread = asyncHandler(async (req, res, next) => {
     Thread.find()
       .limit(10)
       .skip(skipped)
-      .sort({date_created: order})
+      .sort({date_created: req.query.order})
       .exec(),
     Message.find()
       .sort({date_created: "desc"})
@@ -95,17 +95,17 @@ exports.create_thread_post = [
     }
 })]
 
-// individual thread display GET
+// view thread display GET
 exports.display_thread_indv = asyncHandler(async (req, res, next) => {
-  const page = req.params.page || 1
+  const page = req.query.page
   const skipped = (page - 1) * 10
 
   const [thread, msgsCount, messages] = await Promise.all([
-    Thread.findById(req.params.id)
+    Thread.findById(req.query.thread )
      .exec(),
-    Message.find({ thread_id: req.params.id })
+    Message.find({ thread_id: req.query.thread })
      .countDocuments(),
-    Message.find({ thread_id: req.params.id })
+    Message.find({ thread_id: req.query.thread })
      .limit(10)
      .skip(skipped)
      .sort({date_created: "asc"})
@@ -129,7 +129,7 @@ exports.display_thread_indv = asyncHandler(async (req, res, next) => {
   }
 })
 
-// post a reply POST
+// post a reply on a thread POST
 exports.create_reply = [
   body("user", "Name must consist of between 2 to 32 characters")
     .trim()

@@ -26,12 +26,12 @@ block content
           li(id=msg._id) #{msg.message}
 
   if nextpage > 1 && nextpage != page
-    a(href="/thread/" + thread._id + '/' + nextpage) Next Page
+    a(href="/view/?thread=" + thread._id + '&page=' + nextpage) Next
   else
     | Next page
   <br/>
   if prevpage >= 1
-    a(href="/thread/" + thread._id + '/' + prevpage) Prev Page 
+    a(href="/view/?thread=" + thread._id + '&page=' + prevpage) Prev 
   else 
     | Prev Page
 

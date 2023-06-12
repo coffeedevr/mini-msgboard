@@ -5,7 +5,7 @@ block content
     div#main-header
       h2 Latest Threads
       div#create-thread-wrapper
-        a#create-thread-link(href='/thread/new')
+        a#create-thread-link(href='/new')
           h2 + Create a thread
     div#main-threads-wrapper
     ul#thread-list 
@@ -18,7 +18,7 @@ block content
           if thread.flair == 'Question'
             img#thread-logo(src="/images/thread-question.png")
           div#thread-title-wrapper
-            a#thread-title(target="_self" href="/thread/" + thread._id)
+            a#thread-title(target="_self" href="/view/?thread=" + thread._id)
               p <span id="thread-flair"> #{thread.flair} </span>
               p#thread-title-text #{thread.title}
             div#thread-details

@@ -27,7 +27,7 @@ li {
 }
 
 #site-logo {
-  height: 50px;
+  height: 64px;
   align-self: center;
 }
 
@@ -67,7 +67,7 @@ li {
 
 #content-container {
   display: flex;
-  gap: 10px;
+  gap: 15px;
 }
 
 #sidebar-content {
@@ -113,7 +113,7 @@ li {
 }
 
 #title-tag {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: rgb(255, 255, 255);
 }
 
