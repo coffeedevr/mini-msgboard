@@ -20,7 +20,7 @@ block content
           div#thread-title-wrapper
             a#thread-title(target="_self" href="/thread/" + thread._id)
               p <span id="thread-flair"> #{thread.flair} </span>
-              p #{thread.title}
+              p#thread-title-text #{thread.title}
             div#thread-details
               p#thread-user #{thread.user} • #{thread.date_created_formatted}
               p#thread-pages
@@ -28,10 +28,16 @@ block content
                   -  if ((threadpage[key] - 3) == i) {
                   -    break 
                   - } else { 
-                      a(href='/thread/' + thread._id + '/' + i, class='thread-page-links')= '[' + i + '] '
+                      a(href='/thread/' + thread._id + '/' + i, class='thread-page-links')= i
                   -   }
                 - }
-          p#thread-last-reply Last replied by "PLACEHOLDER"
+          if replies[key].length
+            div#thread-last-reply
+              p= 'Last reply by ' + replies[key][0].user
+              p= replies[key][0].date_created_formatted
+          //- else
+          //-   div#thread-last-reply
+          //-   p No replies yet.
       else 
         li There are no threads
 
@@ -52,8 +58,12 @@ block content
       ul 
         each msg in messages 
           li
-            p #{msg.message}
-            a(target="_self" href="/thread/" + msg.thread_id) Visit thread.
+            if msg.message.length >= 30
+              p= msg.message.slice(0, 30) + "..."
+            else
+              p #{msg.message}
+            p#recent-reply-user #{msg.user} • #{msg.date_created_formatted}
+              a(target="_self" href="/thread/" + msg.thread_id) Visit thread
         else
           li No replies.
 

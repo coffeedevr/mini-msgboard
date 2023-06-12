@@ -2,6 +2,7 @@ body {
   padding: 0px;
   margin: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #3C8CC3
 }
 
 a {
@@ -20,9 +21,17 @@ ul {
   padding: 0px;
 }
 
+li {
+  list-style: none;
+}
+
 #site-logo {
   height: 50px;
   align-self: center;
+}
+
+#header-wrapper {
+  
 }
 
 #title-text-wrapper {
@@ -32,18 +41,18 @@ ul {
 }
 
 #page-container {
-  position: relative;
-  min-height: 100vh
+  margin: 0px 8vw;
 }
 
 #main-header {
   display: flex;
   justify-content: space-between;
-  background-color: #00B7FF;
+  background-color:#63A3CF;
   color: white;
   align-items: center;
   padding: 5px 15px;
   height: 65px;
+  border-radius: 20px 20px 0px 0px
 }
 
 #main-header h2 {
@@ -57,13 +66,14 @@ ul {
 
 #content-container {
   display: flex;
-  padding: 0px;
   gap: 10px;
 }
 
 #sidebar-content {
   width: 300px;
   align-self: flex-start;
+  border-radius: 20px;
+  background-color: white;
 }
 
 #sidebar-header {
@@ -72,8 +82,9 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #00B7FF;
+  background-color: #63A3CF;
   color: white;
+  border-radius: 20px 20px 0px 0px;
 }
 
 #sidebar-title-text {
@@ -83,6 +94,8 @@ ul {
 
 #main-content {
   flex-grow: 3;
+  background-color: white;
+  border-radius: 20px;
 }
 
 #header-wrapper {
@@ -95,10 +108,12 @@ ul {
 
 #title-text {
   font-size: 2.5rem;
+  color: white;
 }
 
 #title-tag {
   font-size: 1.2rem;
+  color: rgb(255, 255, 255);
 }
 
 #thread-list {
@@ -121,6 +136,7 @@ ul {
 
 #thread-last-reply {
   display: flex;
+  flex-direction: column;
   margin-top: 5px;
   margin-left: auto;
   text-align: right;
@@ -160,7 +176,7 @@ ul {
 
 .thread-page-links {
   margin-top: 5px;
-  margin-left: 5px;
+  margin-left: 3px;
 }
 
 #footer-container {

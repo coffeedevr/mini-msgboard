@@ -9,7 +9,7 @@ exports.display_thread = asyncHandler(async (req, res, next) => {
   const pageArr = [];
 
   const [threadsCount, threadsRes, recentMsgs] = await Promise.all([
-    Thread.countDocuments(),
+    Thread.countDocuments().exec(),
     Thread.find()
       .limit(10)
       .skip(skipped)
@@ -17,11 +17,13 @@ exports.display_thread = asyncHandler(async (req, res, next) => {
       .exec(),
     Message.find()
       .sort({date_created: "desc"})
-      .limit(5)])
+      .limit(5)
+      .exec()])
 
-  const fetchMsgCount = await Promise.all(
-    threadsRes.map( x => Message.countDocuments({ thread_id: x._id }))
-  )
+  const fetchMsgCount = await Promise.all(threadsRes.map( x => Message.countDocuments({ thread_id: x._id }).exec()))
+
+  const replyArr = await Promise.all(threadsRes.map( x => Message.find({ thread_id: x._id }).sort({date_created: "desc"}).limit(1).exec()))
+
 
   fetchMsgCount.forEach( x => {
     if ( x > 10 ) {
@@ -49,9 +51,9 @@ exports.display_thread = asyncHandler(async (req, res, next) => {
     }
     const prevpage = parseInt(page) - 1
     const nextpage = () => { return pageInt < lastpage() ? pageInt + 1 : lastpage()}
-    res.render("index", { count: threadsCount, threads: threadsRes, messages: recentMsgs, page: page, nextpage: nextpage(), prevpage: prevpage, threadpage: pageArr})
+    res.render("index", { count: threadsCount, threads: threadsRes, messages: recentMsgs, page: page, nextpage: nextpage(), prevpage: prevpage, threadpage: pageArr, replies: replyArr})
   } else {
-    res.render("index", { count: threadsCount, threads: threadsRes, messages: recentMsgs, threadpage: pageArr})
+    res.render("index", { count: threadsCount, threads: threadsRes, messages: recentMsgs, threadpage: pageArr, replies: replyArr})
   }
 })
 
@@ -64,9 +66,9 @@ exports.create_thread_get = asyncHandler(async (req, res, next) => {
 exports.create_thread_post = [
 
   //sanitize data using validator
-  body("title", "Thread name must consist of between 5 to 32 characters")
+  body("title", "Thread name must consist of between 5 to 64 characters")
     .trim()
-    .isLength({ min: 2, max:32 })
+    .isLength({ min: 2, max:64 })
     .escape(),
   body("message", "Thread message must const of at least 3 characters")
     .trim()

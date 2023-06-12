@@ -4,7 +4,7 @@ const { DateTime, Interval } = require("luxon");
 
 const ThreadSchema = new Schema({
     user: { type: String, maxLength: 18},
-    title: { type: String, maxLength: 32, required: true},
+    title: { type: String, maxLength: 64, required: true},
     message: { type: String, maxLength: 360, required: true},
     date_created: { type: Date },
     flair: { type: String, required: true },
