@@ -19,7 +19,7 @@ block content
             img.thread-logo(src="/images/thread-question.png")
           div.thread-title-wrapper
             a.thread-title(target="_self" href="/view/?thread=" + thread._id)
-              p.thread-flair #{thread.flair}
+              p.thread-flair(class=thread.flair) #{thread.flair}
               p.thread-title-text #{thread.title}
             div.thread-details
               p.thread-user by #{thread.user} • #{thread.date_created_formatted}
@@ -28,13 +28,13 @@ block content
                   -  if ((threadpage[key] - 3) == i) {
                   -    break 
                   - } else { 
-                      a(href='/thread/' + thread._id + '/' + i, class='thread-page-links')= i
+                      a(href='/thread/' + thread._id + '/' + i, class='thread-page-links')= '[' + i + ']'
                   -   }
                 - }
           if replies[key].length
             div.thread-last-reply
-              p= 'Last reply by ' + replies[key][0].user
-              p= replies[key][0].date_created_formatted
+              p.last-reply-msg= 'Last reply at ' + replies[key][0].date_created_formatted
+              p.last-reply-date= 'by ' + replies[key][0].user
           //- else
           //-   div#thread-last-reply
           //-   p No replies yet.
@@ -45,12 +45,8 @@ block content
       div#page-threads
         if prevpage >= 1
           a.page-controls(href="/?page=" + prevpage) Prev
-        else 
-          p.page-controls
         if nextpage > 1 && nextpage != page
           a.page-controls(href="/?page=" + nextpage) Next
-        else
-          p.page-controls
   div#sidebar-content
     div#recent-content
       div#sidebar-header
