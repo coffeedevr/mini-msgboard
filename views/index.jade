@@ -12,17 +12,17 @@ block content
       each thread, key in threads
         li.thread-elements
           if thread.flair == 'Discussion'
-            img.thread-logo(src="/images/thread-discuss.png")
+            img.thread-logo.f(src="/images/thread-discuss.png")
           if thread.flair == 'General'
             img.thread-logo(src="/images/thread-general.png")
           if thread.flair == 'Question'
             img.thread-logo(src="/images/thread-question.png")
           div.thread-title-wrapper
             a.thread-title(target="_self" href="/view/?thread=" + thread._id)
-              p <span id="thread-flair"> #{thread.flair} </span>
+              p.thread-flair #{thread.flair}
               p.thread-title-text #{thread.title}
             div.thread-details
-              p.thread-user posted by #{thread.user} • #{thread.date_created_formatted}
+              p.thread-user by #{thread.user} • #{thread.date_created_formatted}
               p.thread-pages
                 - for (let i = threadpage[key]; i >= 1; i--) {
                   -  if ((threadpage[key] - 3) == i) {
@@ -58,13 +58,15 @@ block content
       ul.recent-replies-list
         each msg in messages 
           li.recent-replies
-            if msg.message.length >= 30
-              p.recent-replies-msg= msg.message.slice(0, 30) + "..."
-            else
-              p.recent-replies-msg #{msg.message}
-            p.recent-replies-user replied by #{msg.user} <br/>
-              | #{msg.date_created_formatted} • 
-              a(target="_self" href="/view/?thread=" + msg.thread_id) Visit thread
+            img.recent-replies-img(src="/images/replies.png", alt="")
+            div.recent-replies-wrapper
+              if msg.message.length >= 30
+                p.recent-replies-msg= msg.message.slice(0, 30) + "..."
+              else
+                p.recent-replies-msg #{msg.message}
+              p.recent-replies-user replied by #{msg.user} <br/>
+                | #{msg.date_created_formatted} • 
+                a(target="_self" href="/view/?thread=" + msg.thread_id) Visit thread
         else
           li No replies.
 

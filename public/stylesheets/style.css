@@ -71,7 +71,7 @@ li {
 }
 
 #sidebar-content {
-  width: 300px;
+  width: 320px;
   align-self: flex-start;
   border-radius: 20px;
   background-color: white;
@@ -138,6 +138,7 @@ li {
   display: flex;
   margin-top: 5px;
   font-size: 0.8rem;
+  color: gray;
 }
 
 .thread-last-reply {
@@ -160,13 +161,25 @@ li {
 }
 
 .thread-flair {
-  background-color: grey;
+  background-color: rgb(0, 0, 0);
   color: white;
   font-size: 0.8rem;
   padding: 5px;
   border-radius: 5%;
   text-align: center;
   box-shadow: 2px 2px 1px rgb(49, 49, 49);
+}
+
+.General {
+  background-color: rgb(204, 190, 62);
+}
+
+.Discussion {
+  background-color: rgb(62, 204, 110);
+}
+
+.Question {
+  background-color: rgb(209, 44, 44);
 }
 
 .thread-details {
@@ -194,8 +207,17 @@ li {
 
 .recent-replies {
   display: flex;
+  padding: 0px 10px;
+}
+
+.recent-replies-wrapper {
+  display: flex;
   flex-direction: column;
   margin-left: 10px;
+}
+
+.recent-replies-img {
+  height: 30px;
 }
 
 .recent-replies-msg {
@@ -204,6 +226,7 @@ li {
 
 .recent-replies-user {
   font-size: 0.75rem;
+  color: gray;
 }
 
 #footer-container {
