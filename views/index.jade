@@ -10,20 +10,20 @@ block content
     div#main-threads-wrapper
     ul#thread-list 
       each thread, key in threads
-        li#thread-elements
+        li.thread-elements
           if thread.flair == 'Discussion'
-            img#thread-logo(src="/images/thread-discuss.png")
+            img.thread-logo(src="/images/thread-discuss.png")
           if thread.flair == 'General'
-            img#thread-logo(src="/images/thread-general.png")
+            img.thread-logo(src="/images/thread-general.png")
           if thread.flair == 'Question'
-            img#thread-logo(src="/images/thread-question.png")
-          div#thread-title-wrapper
-            a#thread-title(target="_self" href="/view/?thread=" + thread._id)
+            img.thread-logo(src="/images/thread-question.png")
+          div.thread-title-wrapper
+            a.thread-title(target="_self" href="/view/?thread=" + thread._id)
               p <span id="thread-flair"> #{thread.flair} </span>
-              p#thread-title-text #{thread.title}
-            div#thread-details
-              p#thread-user #{thread.user} • #{thread.date_created_formatted}
-              p#thread-pages
+              p.thread-title-text #{thread.title}
+            div.thread-details
+              p.thread-user posted by #{thread.user} • #{thread.date_created_formatted}
+              p.thread-pages
                 - for (let i = threadpage[key]; i >= 1; i--) {
                   -  if ((threadpage[key] - 3) == i) {
                   -    break 
@@ -32,7 +32,7 @@ block content
                   -   }
                 - }
           if replies[key].length
-            div#thread-last-reply
+            div.thread-last-reply
               p= 'Last reply by ' + replies[key][0].user
               p= replies[key][0].date_created_formatted
           //- else
@@ -41,7 +41,7 @@ block content
       else 
         li There are no threads
 
-    div#thread-controls
+    div.thread-controls
       div#page-threads
         if prevpage >= 1
           a.page-controls(href="/?page=" + prevpage) Prev
@@ -55,15 +55,16 @@ block content
     div#recent-content
       div#sidebar-header
         h2#sidebar-title-text Recent Replies
-      ul 
+      ul.recent-replies-list
         each msg in messages 
-          li
+          li.recent-replies
             if msg.message.length >= 30
-              p= msg.message.slice(0, 30) + "..."
+              p.recent-replies-msg= msg.message.slice(0, 30) + "..."
             else
-              p #{msg.message}
-            p#recent-reply-user #{msg.user} • #{msg.date_created_formatted}
-              a(target="_self" href="/thread/" + msg.thread_id) Visit thread
+              p.recent-replies-msg #{msg.message}
+            p.recent-replies-user replied by #{msg.user} <br/>
+              | #{msg.date_created_formatted} • 
+              a(target="_self" href="/view/?thread=" + msg.thread_id) Visit thread
         else
           li No replies.
 

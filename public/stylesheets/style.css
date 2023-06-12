@@ -53,7 +53,7 @@ li {
   align-items: center;
   padding: 5px 15px;
   height: 65px;
-  border-radius: 20px 20px 0px 0px
+  border-radius: 20px 20px 0px 0px;
 }
 
 #main-header h2 {
@@ -75,6 +75,7 @@ li {
   align-self: flex-start;
   border-radius: 20px;
   background-color: white;
+  box-shadow: 5px 5px 2px rgb(49, 49, 49);
 }
 
 #sidebar-header {
@@ -97,6 +98,7 @@ li {
   flex-grow: 3;
   background-color: white;
   border-radius: 20px;
+  box-shadow: 5px 5px 2px rgb(49, 49, 49);
 }
 
 #header-wrapper {
@@ -110,33 +112,35 @@ li {
 #title-text {
   font-size: 2.5rem;
   color: white;
+  text-shadow: 3px 3px rgb(49, 49, 49);
 }
 
 #title-tag {
   font-size: 1.1rem;
   color: rgb(255, 255, 255);
+  text-shadow: 1px 1px rgb(49, 49, 49);
 }
 
-#thread-list {
+.thread-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-#thread-elements {
+.thread-elements {
   display: flex;
   align-items: center;
   padding: 5px 15px;
   gap: 5px;
 }
 
-#thread-user {
+.thread-user {
   display: flex;
   margin-top: 5px;
   font-size: 0.8rem;
 }
 
-#thread-last-reply {
+.thread-last-reply {
   display: flex;
   flex-direction: column;
   margin-top: 5px;
@@ -144,32 +148,33 @@ li {
   text-align: right;
 }
 
-#thread-title {
+.thread-title {
   display: flex;
   align-items: center;
   font-size: 1.1rem;
   gap: 5px;
 }
 
-#thread-logo {
+.thread-logo {
   height: 50px;
 }
 
-#thread-flair {
+.thread-flair {
   background-color: grey;
   color: white;
   font-size: 0.8rem;
   padding: 5px;
   border-radius: 5%;
   text-align: center;
+  box-shadow: 2px 2px 1px rgb(49, 49, 49);
 }
 
-#thread-details {
+.thread-details {
   display: flex;
   gap: 3px;
 }
 
-#thread-pages {
+.thread-pages {
   display: flex;
   font-size: 0.8rem;
   flex-direction: row-reverse;
@@ -179,6 +184,26 @@ li {
 .thread-page-links {
   margin-top: 5px;
   margin-left: 3px;
+}
+
+.recent-replies-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recent-replies {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.recent-replies-msg {
+  font-size: 0.9rem;
+}
+
+.recent-replies-user {
+  font-size: 0.75rem;
 }
 
 #footer-container {
@@ -199,7 +224,7 @@ li {
   font-size: 0.7rem;
 }
 
-#thread-controls {
+.thread-controls {
   display: flex;
 }
 
