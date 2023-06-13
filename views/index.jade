@@ -18,7 +18,7 @@ block content
           if thread.flair == 'Question'
             img.thread-logo(src="/images/thread-question.png")
           div.thread-title-wrapper
-            a.thread-title(target="_self" href="/view/?thread=" + thread._id)
+            a.thread-title(target="_self" href="/view/thread/" + thread._id)
               p.thread-flair(class=thread.flair) #{thread.flair}
               p.thread-title-text #{thread.title}
             div.thread-details
@@ -28,16 +28,14 @@ block content
                   -  if ((threadpage[key] - 3) == i) {
                   -    break 
                   - } else { 
-                      a(href='/thread/' + thread._id + '/' + i, class='thread-page-links')= '[' + i + ']'
+                      a(href='/view/thread/' + thread._id + '?page=' + i, class='thread-page-links')= '[' + i + ']'
                   -   }
                 - }
           if replies[key].length
             div.thread-last-reply
-              p.last-reply-msg= 'Last reply at ' + replies[key][0].date_created_formatted
-              p.last-reply-date= 'by ' + replies[key][0].user
-          //- else
-          //-   div#thread-last-reply
-          //-   p No replies yet.
+              a(href='/view/thread/' + replies[key][0].thread_id + '/?page=' + replies[key][0].get_page + '#r' + replies[key][0]._id)
+                p.last-reply-msg= 'Last reply at ' + replies[key][0].date_created_formatted
+                p.last-reply-date= 'by ' + replies[key][0].user
       else 
         li There are no threads
 
@@ -57,12 +55,14 @@ block content
             img.recent-replies-img(src="/images/replies.png", alt="")
             div.recent-replies-wrapper
               if msg.message.length >= 30
-                p.recent-replies-msg= msg.message.slice(0, 30) + "..."
+                a(target="_self" href="/view/thread/" + msg.thread_id + '/?page=' + msg.get_page + '#r' + msg._id)
+                  p.recent-replies-msg= msg.message.slice(0, 30) + "..."
               else
-                p.recent-replies-msg #{msg.message}
+                a(target="_self" href="/view/thread/" + msg.thread_id + '/?page=' + msg.get_page + '#r' + msg._id)
+                  p.recent-replies-msg #{msg.message}
               p.recent-replies-user replied by #{msg.user} <br/>
                 | #{msg.date_created_formatted} • 
-                a(target="_self" href="/view/?thread=" + msg.thread_id) Visit thread
+                a(target="_self" href="/view/thread/" + msg.thread_id) Visit thread
         else
           li No replies.
 

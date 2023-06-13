@@ -6,7 +6,8 @@ const MessageSchema = new Schema({
     user: { type: String, maxLength: 18},
     message: { type: String, maxLength: 320, required: true},
     date_created: { type: Date },
-    thread_id: { type: Schema.Types.ObjectId }
+    thread_id: { type: Schema.Types.ObjectId },
+    msgno: { type: Number }
 }, { collection: 'messages' })
 
 MessageSchema.virtual("date_created_formatted").get(function() {
@@ -27,8 +28,15 @@ MessageSchema.virtual("date_created_formatted").get(function() {
   )
 })
 
-MessageSchema.virtual("position").get(function() {
-
+MessageSchema.virtual("get_page").get(function() {
+  const msgsCount = this.msgno
+  if (msgsCount < 10) { return '1' }
+  const number = msgsCount.toString()
+  if (msgsCount % 10 === 0) {
+      return parseInt(number.slice(0, 1))
+  } else {
+      return parseInt(number.slice(0, 1)) + 1
+  }
 })
 
 module.exports = mongoose.model("Message", MessageSchema)

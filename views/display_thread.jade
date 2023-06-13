@@ -10,14 +10,14 @@ block content
       p Replies: 
         ul
           each msg in messages
-              li(id=msg._id) #{msg.message}
+              li(id='r' + msg._id) #{msg.message}
 
     div.thread-controls
       div#page-threads
         if prevpage >= 1
-          a.page-controls(href="/view/?thread=" + thread._id + '&page=' + prevpage) Prev
+          a.page-controls(href="/view/thread/" + thread._id + '?page=' + prevpage) Prev
         if nextpage > 1 && nextpage != page
-          a.page-controls(href="/view/?thread=" + thread._id + '&page=' + nextpage) Next
+          a.page-controls(href="/view/thread/" + thread._id + '?page=' + nextpage) Next
   
     form.form-thread(method="POST" action="")
         label(for="user") Type User name:
