@@ -18,27 +18,19 @@ p {
   margin: 0px;
 }
 
-ul {
-  padding: 0px;
-}
-
-li {
-  list-style: none;
-}
-
 #site-logo {
   height: 64px;
   align-self: center;
-}
-
-#header-wrapper {
-  
 }
 
 #title-text-wrapper {
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
+
+#header-wrapper {
+  margin-bottom: 15px;
 }
 
 #page-container {
@@ -68,6 +60,7 @@ li {
 #content-container {
   display: flex;
   gap: 15px;
+  justify-content: center;
 }
 
 #sidebar-content {
@@ -257,6 +250,10 @@ li {
   font-weight: 700;
 }
 
+.form-create-control {
+  font-size: 1.7rem;
+}
+
 #footer-container {
   text-align: center;
   bottom: 0;
@@ -302,14 +299,68 @@ li {
   display: flex;
   flex-direction: column;
   color: white;
+  gap: 10px;
+  align-self: center;
+}
+
+.form-create-control {
+  font-size: 1.1rem;
+}
+
+#form-title > h2 {
+  color: rgb(0, 0, 0);
+  margin: 5px
+}
+
+#form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 15px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+#form-errors {
+  margin: 5px;
+}
+
+.form-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: #585454;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .form-controls {
-  font-size: 1rem;
+  font-size: 1.2rem;
   margin: 10px 0;
-  padding: 3px;
+  padding: 10px;
 }
 
-#btn-form {
-  align-self: flex-start;
+#flair {
+  padding: 5px;
+}
+
+#btn-create-form {
+  font-size: 1rem;
+  padding: 12px;
+  border-radius: 20px;
+  outline: 0px;
+  border: 0px;
+  align-self: center;
+  cursor: pointer;
+  background-color: #a62639;
+  color: white;
+}
+
+#btn-create-form:hover {
+  transform: scale(1.1);
+}
+
+#create-thread-textarea {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1rem;
+  resize: none;
 }
