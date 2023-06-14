@@ -140,7 +140,7 @@ exports.create_reply = [
     const getLastPage = lastpage(msgsCount)
     const prevpage = page - 1
     const nextpage = () => {
-      return pageInt < getLastPage ? pageInt + 1 : getLastPage
+      return page < getLastPage ? page + 1 : getLastPage
     }
     
     const message = new Message({user: req.body.user, message: req.body.message, date_created: req.body.date_created, thread_id: req.body.thread_id, msgno: msgsCount + 1})
