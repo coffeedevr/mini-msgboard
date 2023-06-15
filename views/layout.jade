@@ -3,15 +3,23 @@ html
   head
     title converse.me
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel="preconnect" href="https://fonts.googleapis.com")
+    link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Alkatra&family=Roboto+Slab&family=Roboto&family=Tilt+Neon&family=Yatra+One&display=swap" rel="stylesheet")
     link(rel='icon', type='image/x-icon' href='/images/favicon.ico')
   body
     div#page-container
       header#header-container
+        div#login-header 
+          if user
+             p Welcome back, user.username! 
+          else
+             p <a href="/log-in">Log in</a> or <a href="/sign-up">Sign up</a>
         div#header-wrapper
           a#title-text-wrapper(href="/")
             img#site-logo(src="/images/converse-logo.png")
-            h1#title-text converse.me
-          p#title-tag Share and Discuss.
+            h1#site-title converse.me
+            p#title-tag Share and Discuss.
       div#content-container
         block content
       footer#footer-container

@@ -2,6 +2,8 @@ extends layout
 
 block content
   div#main-content
+    div#main-header
+      h2 View Thread
     div#thread-wrapper
       div#thread-navigation
         //- p#nav-link
@@ -24,7 +26,7 @@ block content
           hr
           div#thread-msg-content
             p#thread-msg #{thread.message}
-      hr
+      hr#replies-hr
       div#thread-reply-content
           ul#replies-list
             each msg in messages
@@ -33,8 +35,8 @@ block content
                   div.reply-msg-wrapper
                     p.reply-msg-user #{msg.user} • #{msg.date_created_formatted}
                     p.reply-msg-content #{msg.message}
-            else 
-              li No replies yet
+            //- else 
+            //-   li No replies yet
                 
       div.thread-controls
         div#page-threads
@@ -43,21 +45,41 @@ block content
          if nextpage > 1 && nextpage != page
            a.page-controls(href="/view/thread/" + thread._id + '?page=' + nextpage) Next
 
-  
-      form#form-reply(method="POST" action="")
-           label(for="user") Type User name:
-           input.form-controls(type="text" for="user" id="user" name="user" placeholder="Enter your name here... (optional)")
-           label(for="message") Enter your reply:
-           textarea.form-controls(type="text" for="message" id="message" name="message" placeholder="Enter your message here...")
-           input#date_created.form-controls(type="hidden" value=new Date() name="date_created")
-           input.form-controls(type="hidden" value=thread._id name="thread_id")
-           button#btn-form.form-submit(type="submit") Post A Reply
+      if user
+        form#form-reply(method="POST" action="")
+            label(for="user") Type User name:
+            input.form-controls(type="text" for="user" id="user" name="user" placeholder="Enter your name here... (optional)")
+            label(for="message") Enter your reply:
+            textarea.form-controls(type="text" for="message" id="message" name="message" placeholder="Enter your message here...")
+            input#date_created.form-controls(type="hidden" value=new Date() name="date_created")
+            input.form-controls(type="hidden" value=thread._id name="thread_id")
+            button#btn-form.form-submit(type="submit") Post A Reply
+      else 
+        p#reply-form-disabled You must <a href='/log-in'>login</a> in order to reply to this thread.
+
+        form#form-reply(method="POST" action="")
+            label(for="user") Type User name:
+            input.form-controls(type="text" for="user" id="user" name="user" placeholder="Enter your name here... (optional)")
+            label(for="message") Enter your reply:
+            textarea.form-controls(type="text" for="message" id="message" name="message" placeholder="Enter your message here...")
+            input#date_created.form-controls(type="hidden" value=new Date() name="date_created")
+            input.form-controls(type="hidden" value=thread._id name="thread_id")
+            button#btn-form.form-submit(type="submit") Post A Reply
 
       if errors 
          p We found errors in your submission:
            ul 
              for error in errors 
                li!= error.msg
-              
+  div#sidebar-content
+    div#recent-content
+      div#sidebar-header
+        h2#sidebar-title-text Forum Rules
+      ol.recent-replies-list
+        li
+          p Be respectful with each other. <br/>
+            | Do not harrass, bully, threat other users. <br/>
+            | Remember, behind every screen is a human being.
+        li 2.
 
 

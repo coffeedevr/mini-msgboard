@@ -5,8 +5,9 @@ block content
     div#main-header
       h2 Latest Threads
       div#create-thread-wrapper
-        a#create-thread-link(href='/new')
-          h2 + Create a thread
+        if user
+          a#create-thread-link(href='/new')
+              p + Create a thread
     div#main-threads-wrapper
     ul#thread-list 
       each thread, key in threads
@@ -22,7 +23,7 @@ block content
               p.thread-flair(class=thread.flair) #{thread.flair}
               p.thread-title-text #{thread.title}
             div.thread-details
-              p.thread-user by #{thread.user} • #{thread.date_created_formatted}
+              p.index-thread-user by #{thread.user} • #{thread.date_created_formatted}
               p.thread-pages
                 - for (let i = threadpage[key]; i >= 1; i--) {
                   -  if ((threadpage[key] - 3) == i) {
@@ -48,7 +49,7 @@ block content
   div#sidebar-content
     div#recent-content
       div#sidebar-header
-        h2#sidebar-title-text Recent Replies
+        h2.sidebar-title-text Recent Replies
       ul.recent-replies-list
         each msg in messages 
           li.recent-replies

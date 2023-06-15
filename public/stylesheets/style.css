@@ -1,9 +1,9 @@
 body {
   padding: 0px;
   margin: 0px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #3C8CC3;
-  background-color: #511C29;
+  font-family: Roboto, "Lucida Grande", Helvetica, Arial, sans-serif;
+  /* background-color: #511C29; */
+  background-color: #739E82;
   /* background-image: url('../images/background.jpg');
   background-position: fixed;
   background-repeat: no-repeat; */
@@ -21,13 +21,32 @@ p {
   margin: 0px;
 }
 
+#header-container {
+  display: flex;
+  flex-direction: column;
+}
+
 #thread-title-wrapper > hr {
   margin: 10px 0px;
 }
 
 #thread-wrapper > hr {
-  margin: 20px 0px 20px 0px;
+  margin: 20px 0px 0px 0px;
   color: white;
+}
+
+#title-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#site-title {
+  font-size: 2.5rem;
+  color: white;
+  text-shadow: 3px 3px rgb(49, 49, 49);
+  font-family: Alkatra;
+  padding-bottom: none;
 }
 
 #site-logo {
@@ -35,10 +54,15 @@ p {
   align-self: center;
 }
 
-#title-text-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+#login-header {
+  top: 0;
+  padding: 15px;
+  background-color: black;
+  color: white;
+  font-size: 1rem;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  align-self: flex-end;
 }
 
 #header-wrapper {
@@ -52,8 +76,9 @@ p {
 #main-header {
   display: flex;
   justify-content: space-between;
-  background-color: #a62639;
-  color: white;
+  /* background-color: #a62639; */
+  background-color: #2C5530;
+  color: rgb(255, 255, 255);
   align-items: center;
   padding: 5px 15px;
   height: 65px;
@@ -63,10 +88,6 @@ p {
 #main-header h2 {
   margin: 0px;
   font-size: 1.7rem;
-}
-
-#create-thread-wrapper h2 {
-  color: white
 }
 
 #content-container {
@@ -83,27 +104,45 @@ p {
   box-shadow: 7px 7px 5px #2c2c2c;
 }
 
+
 #sidebar-header {
   padding: 5px 15px;
   height: 65px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color:#a62639;
-  color: white;
+  /* background-color:#a62639; */
+  background-color: #2C5530;
+  color: rgb(255, 255, 255);
   border-radius: 20px 20px 0px 0px;
 }
 
-#sidebar-title-text {
+.sidebar-title-text {
   margin: 0px;
   font-size: 1.5rem;
 }
 
 #main-content {
-  flex-grow: 3;
-  background-color: #756d6c;
+  flex: 1;
+  background-color: #7a7877;
   border-radius: 20px;
   box-shadow: 7px 7px 5px #2c2c2c;
+}
+
+#create-thread-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 0px;
+}
+
+#create-thread-link {
+  background-color: #3d9788;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  box-shadow: 3px 3px 5px #2c2c2c
 }
 
 #header-wrapper {
@@ -114,41 +153,42 @@ p {
   align-items: center;
 }
 
-#title-text {
-  font-size: 2.5rem;
-  color: white;
-  text-shadow: 3px 3px rgb(49, 49, 49);
-}
-
 #title-tag {
   font-size: 1.1rem;
   color: rgb(255, 255, 255);
   text-shadow: 1px 1px rgb(49, 49, 49);
+  font-family: Alkatra;
 }
 
 #thread-list {
   display: flex;
   flex-direction: column;
-  gap: 7px;
-  padding: 7px;
+  gap: 10px;
+  padding: 20px 20px;
   margin: 0px;
-  background-color: #756d6c;
 }
 
 .thread-elements {
   display: flex;
   align-items: center;
   padding: 10px 15px;
-  gap: 5px;
   border-radius: 5px;
   background-color: white;
+  box-shadow: 3px 3px 5px #2c2c2c
 }
 
 .thread-user {
   display: flex;
   margin-top: 5px;
   font-size: 0.8rem;
-  color: rgb(97, 97, 97);
+  color: rgb(255, 255, 255);
+}
+
+.index-thread-user {
+  display: flex;
+  margin-top: 5px;
+  font-size: 0.8rem;
+  color: rgb(48, 48, 48);
 }
 
 .thread-last-reply {
@@ -192,6 +232,7 @@ p {
   border-radius: 5%;
   text-align: center;
   box-shadow: 2px 2px 1px rgb(49, 49, 49);
+  letter-spacing: 0.5px;
 }
 
 .General {
@@ -267,6 +308,7 @@ p {
 }
 
 .form-create-control {
+  color: black;
   padding: 10px 0px;
 }
 
@@ -274,6 +316,13 @@ p {
   display: flex;
   flex-direction: column;
   padding: 20px;
+  background-color: white;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+#reply-form-disabled {
+  align-self: center;
 }
 
 #thread-header {
@@ -282,7 +331,8 @@ p {
   gap: 5px;
   padding: 20px;
   border-radius: 5px;
-  background-color: white;
+  background-color: #263D42;
+  box-shadow: 5px 5px 5px #2c2c2c;
 }
 
 #thread-display {
@@ -296,11 +346,17 @@ p {
   flex: 1;
 }
 
+.thread-title-text {
+  font-family: Roboto Slab;
+}
+
 .display-thread-title-text {
+  color: white;
   font-size: 1.3rem;
 }
 
 #thread-msg-content {
+  padding: 10px;
   background-color: white;
   border-radius: 10px;
   min-height: 100px;
@@ -323,7 +379,7 @@ p {
   display: flex;
   align-items: center;
   gap: 5px;
-  padding: 20px;
+  padding: 10px 20px;
   background-color: white;
   border-radius: 5px;
 }
@@ -356,6 +412,7 @@ p {
   width: 100%;
   padding: 8px 0px;
   color: white;
+  font-family: Tilt Neon
 }
 
 #footer-text {
@@ -370,11 +427,7 @@ p {
 
 .thread-controls {
   display: flex;
-  padding: 10px;
-}
-
-#create-thread-link {
-  margin: 0px 10px;
+  padding: 5px 10px 15px 10px;
 }
 
 #page-threads {
@@ -386,7 +439,7 @@ p {
   margin: 0px 5px;
   font-size: 1rem;
   padding: 10px;
-  background-color: #00B7FF;
+  background-color: #80CED7;
   color: white;
   border-radius: 10%;
 }
@@ -405,10 +458,11 @@ p {
 
 .form-create-control {
   font-size: 1.1rem;
+  color: white;
 }
 
 #form-title > h2 {
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   margin: 5px
 }
 
@@ -417,7 +471,7 @@ p {
   flex-direction: column;
   justify-content: center;
   padding: 15px;
-  background-color: white;
+  background-color: #2C5530;
   border-radius: 10px;
 }
 
@@ -428,15 +482,17 @@ p {
 .form-input-wrapper {
   display: flex;
   flex-direction: column;
-  background-color: #585454;
+  background-color: #263D42;
   padding: 10px;
   border-radius: 10px;
 }
 
 .form-controls {
   font-size: 1.2rem;
-  margin: 10px 0;
+  margin: 5px 0;
   padding: 10px;
+  border: none;
+  background-color: #fdfdfd;
 }
 
 #flair {
@@ -451,7 +507,7 @@ p {
   border: 0px;
   align-self: center;
   cursor: pointer;
-  background-color: #a62639;
+  background-color: #3d9788;
   color: white;
 }
 
