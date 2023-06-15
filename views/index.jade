@@ -3,9 +3,15 @@ extends layout
 block content
   div#main-content
     div#main-header
+      a(href="/")
+        svg(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24")
+          path(d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z")
       h2 Latest Threads
       div#create-thread-wrapper
         if user
+          a#create-thread-link(href='/new')
+              p + Create a thread
+        else 
           a#create-thread-link(href='/new')
               p + Create a thread
     div#main-threads-wrapper

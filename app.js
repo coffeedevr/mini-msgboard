@@ -6,6 +6,9 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const {addQuery} = require('./modules/middleware')
+const session = require("express-session");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 
 const indexRouter = require('./routes/index');
 const usersThreads = require('./routes/thread_route');
@@ -31,6 +34,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.urlencoded({ extended: false }));
 
 app.use('/', addQuery, indexRouter);
 app.use('/view', addQuery, usersThreads);
