@@ -11,9 +11,6 @@ block content
         if user
           a#create-thread-link(href='/new')
               p + Create a thread
-        else 
-          a#create-thread-link(href='/new')
-              p + Create a thread
     div#main-threads-wrapper
     ul#thread-list 
       each thread, key in threads

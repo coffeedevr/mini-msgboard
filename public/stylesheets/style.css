@@ -26,6 +26,10 @@ p {
   margin: 0px;
 }
 
+#page-container {
+  margin: 0px 5vw;
+}
+
 #header-container {
   display: flex;
   flex-direction: column;
@@ -72,10 +76,6 @@ p {
 
 #header-wrapper {
   margin-bottom: 15px;
-}
-
-#page-container {
-  margin: 0px 8vw;
 }
 
 #main-header {
@@ -129,7 +129,7 @@ p {
 
 #main-content {
   flex: 1;
-  background-color: #7a7877;
+  background-color: rgb(226, 226, 226);
   border-radius: 20px;
   box-shadow: 7px 7px 5px #2c2c2c;
 }
@@ -231,6 +231,7 @@ p {
 
 .thread-logo {
   height: 50px;
+  margin-right: 10px;
 }
 
 .thread-flair {
@@ -388,8 +389,8 @@ p {
   display: flex;
   align-items: center;
   gap: 5px;
-  padding: 10px 20px;
-  background-color: white;
+  padding: 20px 20px;
+  background-color: rgb(226, 226, 226);
   border-radius: 5px;
 }
 
@@ -401,9 +402,10 @@ p {
 
 .reply-msg-content {
   margin-top: 5px;
-  background-color: white;
   border-radius: 10px;
   min-height: 50px;
+  background-color: white;
+  padding: 10px;
 }
 
 #form-reply {
@@ -500,7 +502,7 @@ p {
   display: flex;
   flex-direction: column;
   background-color: #263D42;
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 10px;
   box-shadow: 3px 3px 5px #2c2c2c
 }
@@ -510,7 +512,6 @@ p {
   margin: 5px 0;
   padding: 10px;
   border: none;
-  background-color: #fdfdfd;
   min-width: 350px;
 }
 
@@ -528,7 +529,9 @@ p {
   cursor: pointer;
   background-color: #3d9788;
   color: white;
-  box-shadow: 3px 3px 5px #2c2c2c
+  box-shadow: 3px 3px 5px #2c2c2c;
+  margin-top: 30px;
+  min-width: 100px
 }
 
 #btn-create-form:hover {
@@ -543,5 +546,5 @@ p {
 
 #signup-text {
   text-align: center;
-  margin: 10px;
+  margin: 40px 10px 10px 10px;
 }

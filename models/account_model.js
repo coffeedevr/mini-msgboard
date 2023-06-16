@@ -2,15 +2,15 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 const { DateTime, Interval } = require("luxon");
 
-const MessageSchema = new Schema({
-    user: { type: String, maxLength: 18},
-    message: { type: String, maxLength: 320, required: true},
-    date_created: { type: Date, required: true },
-    thread_id: { type: Schema.Types.ObjectId },
-    msgno: { type: Number }
-}, { collection: 'messages' })
+const AccountSchema = new Schema({
+    username: { type: String, minLength: 7, maxLength: 15, required: true},
+    password: { type: String, minLength: 8, required: true },
+    gender: { type: String },
+    location: { type: String },
+    date_created: { type: Date, required: true }
+}, { collection: 'accounts' })
 
-MessageSchema.virtual("date_created_formatted").get(function() {
+AccountSchema.virtual("get_acc_age").get(function() {
   const currentDate = DateTime.fromISO(new Date().toISOString())
   const dateCreation = DateTime.fromISO(this.date_created.toISOString())
   const res = Interval.fromDateTimes(dateCreation, currentDate)
@@ -25,18 +25,7 @@ MessageSchema.virtual("date_created_formatted").get(function() {
     res.length('days') < 7 ?
       Math.trunc(res.length('days')) + ' days ago' :
       Math.trunc(res.length('weeks')) + ' weeks ago' 
-  )
+    )
 })
 
-MessageSchema.virtual("get_page").get(function() {
-  const msgsCount = this.msgno
-  if (msgsCount < 10) { return '1' }
-  const number = msgsCount.toString()
-  if (msgsCount % 10 === 0) {
-      return parseInt(number.slice(0, 1))
-  } else {
-      return parseInt(number.slice(0, 1)) + 1
-  }
-})
-
-module.exports = mongoose.model("Message", MessageSchema)
+module.exports = mongoose.model("Account", AccountSchema)
