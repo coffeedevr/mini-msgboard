@@ -21,10 +21,10 @@ html
       form.form-thread(method="POST" action="")
         div.form-input-wrapper
           label.form-create-control(for="username") Username:
-          input.form-controls(type="text" for="username" name="username" )
+          input.form-controls(type="text" id="username" name="username" )
         div.form-input-wrapper
           label.form-create-control(for="password") Password:
-          input.form-controls(type="password" for="password" name="password")
+          input.form-controls(type="password" id="password" name="password")
         button#btn-create-form.form-submit(type="submit") Log in
       p#signup-text No account? <a href="/sign-up">Sign up here.</a>
     div#logo-content

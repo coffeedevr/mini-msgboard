@@ -5,6 +5,7 @@ const { DateTime, Interval } = require("luxon");
 const AccountSchema = new Schema({
     username: { type: String, minLength: 7, maxLength: 15, required: true},
     password: { type: String, minLength: 8, required: true },
+    email: { type: String},
     gender: { type: String },
     location: { type: String },
     date_created: { type: Date, required: true }

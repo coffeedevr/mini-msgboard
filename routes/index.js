@@ -10,5 +10,6 @@ router.get('/new', thread_controller.create_thread_get)
 router.post('/new', thread_controller.create_thread_post)
 router.get('/log-in', account_controller.login_get)
 router.get('/sign-up', account_controller.signup_get)
+router.post('/sign-up', account_controller.signup_post)
 
 module.exports = router;
