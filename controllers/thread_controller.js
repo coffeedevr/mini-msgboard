@@ -10,6 +10,8 @@ exports.display_thread = asyncHandler(async (req, res, next) => {
   const skipped = (page - 1) * 10
   const pageArr = [];
 
+  console.log(req.user)
+
   const [threadsCount, threadsRes, recentMsgs] = await Promise.all([
     Thread.countDocuments().exec(),
     Thread.find()
@@ -61,15 +63,10 @@ exports.create_thread_post = [
     .trim()
     .isLength({ min: 3 })
     .escape(),
-  // body("user", "Name must consist of between 2 to 32 characters")
-  //   .trim()
-  //   .isLength({ min: 2, max:32 })
-  //   .escape(),
 
   asyncHandler(async (req, res, next) => {
-    req.body.user = 'Anonymous'
     const errors = validationResult(req)
-    const thread = new Thread({user: req.body.user, title: req.body.title, message: req.body.message, date_created: req.body.date_created, flair: req.body.flair})
+    const thread = new Thread({ user: req.user.username, title: req.body.title, message: req.body.message, date_created: req.body.date_created, flair: req.body.flair})
 
     if (!errors.isEmpty()) {
       res.render("create_thread", {
@@ -103,7 +100,7 @@ exports.display_thread_indv = asyncHandler(async (req, res, next) => {
     const prevpage = parseInt(page) - 1
     const nextpage = () => { return pageInt < lastpage(msgsCount) ? pageInt + 1 : lastpage()}
     
-    res.render('display_thread', { thread: thread, messages: messages, page: page, nextpage: nextpage(), prevpage: prevpage })
+    res.render('display_thread', { thread: thread, messages: messages, page: page, nextpage: nextpage(), prevpage: prevpage})
   } else {
     res.render('display_thread', { thread: thread, messages: messages })
   }
@@ -111,10 +108,6 @@ exports.display_thread_indv = asyncHandler(async (req, res, next) => {
 
 // post a reply on a thread POST
 exports.create_reply = [
-  body("user", "Name must consist of between 2 to 32 characters")
-    .trim()
-    .isLength({ min: 2, max: 32 })
-    .escape(),
   body("message", "Thread message must consist of between 3 characters")
     .trim()
     .isLength({ min: 3 })
@@ -143,10 +136,10 @@ exports.create_reply = [
       return page < getLastPage ? page + 1 : getLastPage
     }
     
-    const message = new Message({user: req.body.user, message: req.body.message, date_created: req.body.date_created, thread_id: req.body.thread_id, msgno: msgsCount + 1})
+    const message = new Message({user: req.user.username, message: req.body.message, date_created: req.body.date_created, thread_id: req.body.thread_id, msgno: msgsCount + 1})
 
     if (!errors.isEmpty()) {
-        res.render('display_thread', { thread: thread, messages: messages, page: page, nextpage: nextpage(), prevpage: prevpage, errors: errors.array() })
+        res.render('display_thread', { thread: thread, messages: messages, page: page, nextpage: nextpage(), prevpage: prevpage, errors: errors.array()})
       return
     } else {
       await message.save()

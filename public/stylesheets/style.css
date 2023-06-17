@@ -15,7 +15,7 @@ svg {
 }
 
 a {
-  color: #00B7FF;
+  color: #68B0AB;
   text-decoration: none;
   margin: 0px;
   padding: 0px;
@@ -24,6 +24,12 @@ a {
 h1,
 p {
   margin: 0px;
+}
+
+
+#settings-icon {
+  height: 25px;
+  margin: 0px 5px;
 }
 
 #page-container {
@@ -72,6 +78,14 @@ p {
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   align-self: flex-end;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login-header.p1 {
+  display: flex;
+  align-items: center;
 }
 
 #header-wrapper {
@@ -358,6 +372,7 @@ p {
 
 .thread-title-text {
   font-family: Roboto Slab;
+  color: #4A7C59;
 }
 
 .display-thread-title-text {
@@ -411,6 +426,14 @@ p {
 #form-reply {
   display: flex;
   flex-direction: column;
+  padding: 20px 20px;
+  background-color: #C8D5B9;
+  border-radius: 5px;
+}
+
+#form-reply #message {
+  border-radius: 10px;
+  font-size: 1rem;
 }
   
 .form-create-control {

@@ -12,7 +12,10 @@ html
       header#header-container
         div#login-header 
           if user
-             p Welcome back, user.username! 
+            p.login-header.p1 #{user.username}
+              a(href="/account")
+                img(id="settings-icon" src="/images/settings_icon.png")
+              a(href="/log-out") log out
           else
              p <a href="/log-in">Log in</a> or <a href="/sign-up">Sign up</a>
         div#header-wrapper

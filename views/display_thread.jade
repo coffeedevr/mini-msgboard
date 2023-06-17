@@ -8,9 +8,6 @@ block content
           path(d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z")
       h2 / View Thread
     div#thread-wrapper
-      div#thread-navigation
-        //- p#nav-link
-        //-   a(href="/") Home
       div#thread-header
         div#thread-display
           if thread.flair == 'Discussion'
@@ -38,8 +35,8 @@ block content
                   div.reply-msg-wrapper
                     p.reply-msg-user #{msg.user} • #{msg.date_created_formatted}
                     p.reply-msg-content #{msg.message}
-            //- else 
-            //-   li No replies yet
+            else 
+              p No replies yet.
                 
       div.thread-controls
         div#page-threads
@@ -49,9 +46,9 @@ block content
            a.page-controls(href="/view/thread/" + thread._id + '?page=' + nextpage) Next
 
       if user
+        div#reply-wrapper
+          
         form#form-reply(method="POST" action="")
-            label(for="user") Type User name:
-            input.form-controls(type="text" for="user" id="user" name="user" placeholder="Enter your name here... (optional)")
             label(for="message") Enter your reply:
             textarea.form-controls(type="text" for="message" id="message" name="message" placeholder="Enter your message here...")
             input#date_created.form-controls(type="hidden" value=new Date() name="date_created")
@@ -59,15 +56,6 @@ block content
             button#btn-form.form-submit(type="submit") Post A Reply
       else 
         p#reply-form-disabled You must <a href='/log-in'>login</a> in order to reply to this thread.
-
-        form#form-reply(method="POST" action="")
-            label(for="user") Type User name:
-            input.form-controls(type="text" for="user" id="user" name="user" placeholder="Enter your name here... (optional)")
-            label(for="message") Enter your reply:
-            textarea.form-controls(type="text" for="message" id="message" name="message" placeholder="Enter your message here...")
-            input#date_created.form-controls(type="hidden" value=new Date() name="date_created")
-            input.form-controls(type="hidden" value=thread._id name="thread_id")
-            button#btn-form.form-submit(type="submit") Post A Reply
 
       if errors 
          p We found errors in your submission:
