@@ -18,6 +18,8 @@ html
           ul 
             for error in errors 
               li!= error.msg
+        if messages.info 
+          p Successfully created your account! You can now use it to login and participate in the forums!
       form.form-thread(method="POST" action="")
         div.form-input-wrapper
           label.form-create-control(for="username") Username:

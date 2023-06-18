@@ -225,13 +225,11 @@ p {
 .last-reply-msg {
   color: rgb(0, 0, 0);
   font-size: 0.9rem;
-  font-style: italic;
 }
 
 .last-reply-date {
   color: rgb(97, 97, 97);
   font-size: 0.8rem;
-  font-style: italic;
 }
 
 .thread-title {

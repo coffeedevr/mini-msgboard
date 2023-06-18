@@ -9,6 +9,7 @@ const { addQuery, addUser } = require('./modules/middleware')
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const flash = require('express-flash')
 const Account = require("./models/account_model")
 
 const indexRouter = require('./routes/index');
@@ -62,7 +63,6 @@ app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
@@ -70,6 +70,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 app.use(addUser)
+app.use(flash());
 
 app.use('/', addQuery, indexRouter);
 app.use('/view', addQuery, usersThreads);

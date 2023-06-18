@@ -1,10 +1,9 @@
 const Account = require("../models/account_model")
 const asyncHandler = require("express-async-handler")
 const { body, validationResult } = require("express-validator")
-const passport = require("passport");
 
 exports.login_get = asyncHandler(async (req, res, next) => {
-    res.render('login')
+  res.render('login')
 })
 
 exports.signup_get = asyncHandler(async (req, res, next) => {
@@ -12,14 +11,21 @@ exports.signup_get = asyncHandler(async (req, res, next) => {
 })
 
 exports.signup_post = [
-    body("username", "Thread name must consist of between 7 to 15 characters.")
+    body("username", "Username must consist of between 7 to 15 characters.")
       .trim()
       .isLength({ min: 7, max: 15 })
       .escape(),
+    body('username')
+      .custom(async value => {
+        const user = await Account.findOne({ username: value })
+        if (user) {
+            throw new Error('Username already in use.')
+        }
+      }),
     body('email')
       .trim()
       .escape(),
-    body('email', 'Email already exist.')
+    body('email')
       .custom(async value => {
         const user = await Account.findOne({ email: value })
         if (user) {
@@ -41,6 +47,7 @@ exports.signup_post = [
         res.render('signup', { errors: errors.array() })
       } else {
         await account.save()
+        req.flash('info', 'Your account has been successfully created! You can now login using that account.')
         res.redirect('/log-in')
       }
     }

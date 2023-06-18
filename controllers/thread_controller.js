@@ -2,7 +2,6 @@ const Thread = require("../models/thread_model")
 const Message = require("../models/message_model")
 const asyncHandler = require("express-async-handler")
 const { body, validationResult } = require("express-validator")
-const session = require('express-session')
 const { lastpage } = require("../modules/get_pages")
 
 exports.display_thread = asyncHandler(async (req, res, next) => {
@@ -112,7 +111,7 @@ exports.create_reply = [
     .escape(),
 
   asyncHandler(async (req, res, next) => {
-  
+
     const errors = validationResult(req)
 
     const page = parseInt(req.query.page)
