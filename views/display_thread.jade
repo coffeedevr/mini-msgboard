@@ -47,10 +47,11 @@ block content
 
       if user
         div#reply-wrapper
-          
-        form#form-reply(method="POST" action="")
+          form#reply-account
+            img.reply-avatar(src='/images/user.png')
+          form#form-reply(method="POST" action="")
             label(for="message") Enter your reply:
-            textarea.form-controls(type="text" for="message" id="message" name="message" placeholder="Enter your message here...")
+            textarea.form-controls(type="text" for="message" id="message" name="message" rows="5" resize="false")
             input#date_created.form-controls(type="hidden" value=new Date() name="date_created")
             input.form-controls(type="hidden" value=thread._id name="thread_id")
             button#btn-form.form-submit(type="submit") Post A Reply

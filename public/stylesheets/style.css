@@ -71,7 +71,7 @@ p {
 
 #login-header {
   top: 0;
-  padding: 15px;
+  padding: 10px;
   background-color: black;
   color: white;
   font-size: 1rem;
@@ -387,6 +387,12 @@ p {
   min-height: 100px;
 }
 
+#reply-wrapper {
+  display: flex;
+  padding: 20px;
+  gap: 5px;
+}
+
 #replies-list {
   display: flex;
   flex-direction: column;
@@ -429,6 +435,7 @@ p {
   padding: 20px 20px;
   background-color: #C8D5B9;
   border-radius: 5px;
+  flex-grow: 1;
 }
 
 #form-reply #message {
@@ -542,6 +549,7 @@ p {
   padding: 5px;
 }
 
+#btn-form,
 #btn-create-form {
   font-size: 1rem;
   padding: 12px;
@@ -555,6 +563,10 @@ p {
   box-shadow: 3px 3px 5px #2c2c2c;
   margin-top: 30px;
   min-width: 100px
+}
+
+#btn-form {
+  margin-top: 15px;
 }
 
 #btn-create-form:hover {

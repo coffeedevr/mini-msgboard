@@ -10,8 +10,6 @@ exports.display_thread = asyncHandler(async (req, res, next) => {
   const skipped = (page - 1) * 10
   const pageArr = [];
 
-  console.log(req.user)
-
   const [threadsCount, threadsRes, recentMsgs] = await Promise.all([
     Thread.countDocuments().exec(),
     Thread.find()
