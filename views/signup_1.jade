@@ -1,0 +1,37 @@
+doctype html
+html
+  head
+    title converse.me
+    link(rel='stylesheet', href='/stylesheets/user_auth.css')
+    link(rel="preconnect" href="https://fonts.googleapis.com")
+    link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Alkatra&family=Roboto+Slab&family=Roboto&family=Tilt+Neon&family=Yatra+One&display=swap" rel="stylesheet")
+    link(rel='icon', type='image/x-icon' href='/images/favicon.ico')
+  body
+  div#page-container
+    div#form-wrapper
+      div#form-title
+        h2 Sign Up
+      div#form-errors
+        if errors 
+          p We found errors in your submission:
+          ul 
+            for error in errors 
+              li!= error.msg
+      form.form-thread(method="POST" action="")
+        //- label(for="user") Type User name:
+        //- input.form-controls(type="text" for="user" id="user" name="user" placeholder="Enter your name here... (optional)")
+        div.form-input-wrapper
+          label.form-create-control(for="username") Username:
+          input.form-controls(type="text" id="username" name="username" )
+        .form-input-wrapper 
+          label.form-create-control(for="email") Email Address: 
+          input.form-controls(type="email" id="email" name="email")
+        div.form-input-wrapper
+          label.form-create-control(for="password") Password:
+          input.form-controls(type="password" id="password" name="password")
+        div.form-input-wrapper
+          label.form-create-control(for="passwordConfirm") Confirm Password:
+          input.form-controls(type="password" id="passwordConfirm" name="passwordConfirm")
+        button#btn-create-form.form-submit(type="submit") Sign Up
+      h1#signup-text Have an account already? <a href="/log-in">Log in here.</a>

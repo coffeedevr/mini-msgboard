@@ -1,8 +1,12 @@
+:root {
+  background: url('/images/bg-login.jpg') no-repeat center fixed;
+  background-size: cover;
+}
+
 body {
   padding: 0px;
   margin: 0px;
   font-family: Roboto, "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #739E82;
 }
 
 svg {
@@ -577,8 +581,4 @@ p {
 #signup-text {
   text-align: center;
   margin: 40px 10px 10px 10px;
-}
-
-#text-wrapper {
-  margin-right: 10px;
 }

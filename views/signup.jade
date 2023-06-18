@@ -8,30 +8,46 @@ html
     link(href="https://fonts.googleapis.com/css2?family=Alkatra&family=Roboto+Slab&family=Roboto&family=Tilt+Neon&family=Yatra+One&display=swap" rel="stylesheet")
     link(rel='icon', type='image/x-icon' href='/images/favicon.ico')
   body
-  div#page-container
-    div#form-wrapper
-      div#form-title
-        h2 Sign Up
-      div#form-errors
-        if errors 
-          p We found errors in your submission:
-          ul 
-            for error in errors 
-              li!= error.msg
-      form.form-thread(method="POST" action="")
-        //- label(for="user") Type User name:
-        //- input.form-controls(type="text" for="user" id="user" name="user" placeholder="Enter your name here... (optional)")
-        div.form-input-wrapper
-          label.form-create-control(for="username") Username:
-          input.form-controls(type="text" id="username" name="username" )
-        .form-input-wrapper 
-          label.form-create-control(for="email") Email Address: 
-          input.form-controls(type="email" id="email" name="email")
-        div.form-input-wrapper
-          label.form-create-control(for="password") Password:
-          input.form-controls(type="password" id="password" name="password")
-        div.form-input-wrapper
-          label.form-create-control(for="passwordConfirm") Confirm Password:
-          input.form-controls(type="password" id="passwordConfirm" name="passwordConfirm")
-        button#btn-create-form.form-submit(type="submit") Sign Up
-      h1#signup-text Have an account already? <a href="/log-in">Log in here.</a>
+    div#content-container
+      div#content-wrapper
+        div#header-wrapper
+          a#title-text-wrapper(href="/")
+            img#site-logo(src="/images/converse-logo.png")
+            h1#site-title converse.me
+            p#title-tag Share and Discuss.
+        div#form-wrapper
+          div#form-title
+            h3 Sign Up
+          div#form-errors
+            if errors 
+              p We found errors in your submission:
+              ul 
+                for error in errors 
+                  li!= error.msg
+            if messages.info 
+              p Successfully created your account! You can now use it to login and participate in the forums!
+          form.form-login(method="POST" action="")
+            div.form-input-wrapper
+              label.form-login-control(for="username") Username:
+              input.form-controls(type="text" id="username" name="username" )
+            div.form-input-wrapper 
+              label.form-login-control(for="email") Email Address: 
+              input.form-controls(type="email" id="email" name="email")
+            div.form-input-wrapper
+              label.form-login-control(for="password") Password:
+              input.form-controls(type="password" id="password" name="password")
+            div.form-input-wrapper
+              label.form-login-control(for="passwordConfirm") Confirm Password:
+              input.form-controls(type="password" id="passwordConfirm" name="passwordConfirm")
+            button#btn-login.form-submit(type="submit") Sign Up
+        p#signup-text Have an account already? <a href="/log-in">Log in here.</a>
+        #footer-container
+          p#footer-text= '© ' + (new Date().getFullYear()) + ' coffeedevr | '
+            a(href="https://github.com/coffeedevr/mini-msgboard")
+              img#github-logo(src="/images/githublogo.png" height="30px" width="30px")
+          p#footer-text-two This project is made using Express, MongoDB and Jade. <br/> All icons used are not mine.
+      div#tagline-content
+        #text-wrapper 
+          h1#headline-text Talk to people and voice out your opinions
+          h2#headline-text-2 Join converse.me to start your conversation <br> and let your mind be heard.
+          h1#headline-text-3 It's free!

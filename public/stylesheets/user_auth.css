@@ -2,7 +2,7 @@ body {
   padding: 0px;
   margin: 0px;
   font-family: Roboto, "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #739E82;
+  background-color: #9b9b9b;
 }
 
 
@@ -66,17 +66,7 @@ p {
   flex-direction: column;
 }
   
-#thread-title-wrapper > hr {
-  margin: 10px 0px;
-}
-  
-#thread-wrapper > hr {
-    margin: 20px 0px 0px 0px;
-    color: white;
-}
-  
 #title-text-wrapper {
-  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -105,7 +95,7 @@ p {
 }
 
 #form-wrapper {
-  margin: 5px;
+  margin: 0px 5px;
   padding: 10px
 }
 
@@ -113,23 +103,22 @@ p {
   display: flex;
   flex-direction: column;
   color: white;
-  gap: 10px;
   align-self: center;
-  padding: 5px;
+  padding: 10px 5px;
+  border-radius: 10px;
+  background-color: #263D42;
 }
 
 .form-input-wrapper {
   display: flex;
   flex-direction: column;
-  background-color: #263D42;
-  padding: 10px 20px;
-  border-radius: 10px;
+  padding: 5px 20px;
 }
 
 .form-controls {
   font-size: 1rem;
   margin: 5px 0;
-  padding: 10px;
+  padding: 5px;
   border: none;
 }
 
@@ -148,9 +137,18 @@ p {
   cursor: pointer;
   background-color: #337c70;
   color: white;
-  min-width: 100px
+  min-width: 100px;
+  margin-bottom: 5px;
 }
 
 #text-wrapper {
     margin-right: 50px;
+}
+
+#form-errors {
+  font-size: 0.9rem;
+  color: rgb(139, 10, 10);
+  margin: 5px;
+  padding: 5px 0px;
+  font-weight: 500;
 }
