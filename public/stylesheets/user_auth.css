@@ -66,7 +66,7 @@ p {
   flex-direction: column;
 }
   
-#title-text-wrapper {
+#header-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;

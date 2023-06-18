@@ -64,14 +64,20 @@ block content
              for error in errors 
                li!= error.msg
   div#sidebar-content
-    div#recent-content
-      div#sidebar-header
-        h2#sidebar-title-text Forum Rules
-      ol.recent-replies-list
-        li
-          p Be respectful with each other. <br/>
-            | Do not harrass, bully, threat other users. <br/>
-            | Remember, behind every screen is a human being.
-        li 2.
+    div.rules-content
+      div.sidebar-header
+        h2.sidebar-title-text Forum Rules
+      div.rules-wrapper
+        p.rules.p1 <strong> 1. Be respectful with each other. </strong> <br/>
+          | Do not harrass, bully, threat other users. <br/>
+          | Remember, behind every screen is a human being.
+        p.rules.p2 <strong> 2. Stay on topic. </strong> <br/>
+          | When engaging on a thread,try to stay 'on topic'.
+          | If something new comes up that you would like to discuss, start a new thread.
+        p.rules.p2 <strong> 3. Share your knowledge. </strong> <br/>
+          | If you think what you know is useful or interesting, feel free to share!
+          | Make sure to also provide sources if you wish to give information.
+          
+        
 
 

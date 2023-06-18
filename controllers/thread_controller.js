@@ -1,5 +1,6 @@
 const Thread = require("../models/thread_model")
 const Message = require("../models/message_model")
+const Account = require("../models/account_model")
 const asyncHandler = require("express-async-handler")
 const { body, validationResult } = require("express-validator")
 const { lastpage } = require("../modules/get_pages")
@@ -9,7 +10,7 @@ exports.display_thread = asyncHandler(async (req, res, next) => {
   const skipped = (page - 1) * 10
   const pageArr = [];
 
-  const [threadsCount, threadsRes, recentMsgs] = await Promise.all([
+  const [threadsCount, threadsRes, recentMsgs, totalMsgs, totalAcc] = await Promise.all([
     Thread.countDocuments().exec(),
     Thread.find()
       .limit(10)
@@ -19,6 +20,12 @@ exports.display_thread = asyncHandler(async (req, res, next) => {
     Message.find()
       .sort({date_created: "desc"})
       .limit(5)
+      .exec(),
+    Message.find()
+      .countDocuments()
+      .exec(),
+    Account.find()
+      .countDocuments()
       .exec()])
   const fetchMsgCount = await Promise.all(threadsRes.map( x => Message.countDocuments({ thread_id: x._id }).exec()))
   const replyArr = await Promise.all(threadsRes.map( x => Message.find({ thread_id: x._id }).sort({date_created: "desc"}).limit(1).exec()))
@@ -37,9 +44,9 @@ exports.display_thread = asyncHandler(async (req, res, next) => {
     const nextpage = () => { 
       return pageInt < lastpage(threadsCount) ? pageInt + 1 : lastpage(threadsCount)
     }
-    res.render("index", { count: threadsCount, threads: threadsRes, messages: recentMsgs, page: page, nextpage: nextpage(), prevpage: prevpage, threadpage: pageArr, replies: replyArr})
+    res.render("index", { count: threadsCount, threads: threadsRes, messages: recentMsgs, page: page, nextpage: nextpage(), prevpage: prevpage, threadpage: pageArr, replies: replyArr, totalMsgs: totalMsgs, totalAcc, totalAcc})
   } else {
-    res.render("index", { count: threadsCount, threads: threadsRes, messages: recentMsgs, threadpage: pageArr, replies: replyArr})
+    res.render("index", { count: threadsCount, threads: threadsRes, messages: recentMsgs, threadpage: pageArr, replies: replyArr, totalMsgs: totalMsgs, totalAcc, totalAcc})
   }
 })
 

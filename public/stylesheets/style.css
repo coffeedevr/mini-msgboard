@@ -1,5 +1,5 @@
 :root {
-  background: url('/images/bg-login.jpg') no-repeat center fixed;
+  background: url('/images/background.jpg') no-repeat center fixed;
   background-size: cover;
 }
 
@@ -116,17 +116,13 @@ p {
 }
 
 #sidebar-content {
-  width: 345px;
+  min-width: 300px;
   align-self: flex-start;
-  border-radius: 20px;
-  background-color: white;
-  box-shadow: 7px 7px 5px #2c2c2c;
 }
 
 
-#sidebar-header {
+.sidebar-header {
   padding: 5px 15px;
-  height: 65px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -137,7 +133,7 @@ p {
 }
 
 .sidebar-title-text {
-  margin: 0px;
+  margin: 5px 0px;
   font-size: 1.5rem;
 }
 
@@ -295,10 +291,38 @@ p {
   padding: 10px;
 }
 
+#recent-content {
+  background-color: #E2E2E2;
+  border-radius: 20px;
+  box-shadow: 7px 7px 5px #2c2c2c;
+}
+
+#site-stats-content {
+  border-radius: 20px;
+  box-shadow: 7px 7px 5px #2c2c2c;
+  margin-bottom: 10px;
+}
+
+.site-stats-container {
+  padding: 10px;
+  background-color: #E2E2E2;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.site-stats-wrapper {
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
 .recent-replies {
   display: flex;
   align-items: center;
-  padding: 0px 10px;
+  padding: 5px 10px;
+  background-color: white;
+  border-radius: 5px;
 }
 
 .recent-replies-wrapper {
@@ -324,6 +348,26 @@ p {
 .recent-replies-user > a {
   font-style: normal;
   font-weight: 700;
+}
+
+.rules-content {
+  max-width: 300px;
+  background-color: #E2E2E2;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px #2c2c2c;
+}
+
+.rules-wrapper {
+  padding: 10px;
+}
+
+.rules {
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
 }
 
 #nav-link {

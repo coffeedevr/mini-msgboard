@@ -50,13 +50,34 @@ block content
         if nextpage > 1 && nextpage != page
           a.page-controls(href="/?page=" + nextpage) Next
   div#sidebar-content
+    .rules-content
+      div.sidebar-header
+          h2.sidebar-title-text Forum Rules
+        div.rules-wrapper
+          p.rules.p1 <strong> 1. Be respectful with each other. </strong> <br/>
+            | Do not harrass, bully, threat other users. <br/>
+            | Remember, behind every screen is a human being.
+          p.rules.p2 <strong> 2. Stay on topic. </strong> <br/>
+            | When engaging on a thread,try to stay 'on topic'.
+            | If something new comes up that you would like to discuss, start a new thread.
+          p.rules.p2 <strong> 3. Share your knowledge. </strong> <br/>
+            | If you think what you know is useful or interesting, feel free to share!
+            | Make sure to also provide sources if you wish to give information.
+    #site-stats-content 
+      div.sidebar-header
+        h2.sidebar-title-text Site Stats
+      div.site-stats-container
+        div.site-stats-wrapper
+          p Total Users: #{totalAcc} registered
+          p Total Threads: #{count} submitted
+          p Total Replies Posted: #{totalMsgs} posted
     div#recent-content
-      div#sidebar-header
+      div.sidebar-header
         h2.sidebar-title-text Recent Replies
       ul.recent-replies-list
         each msg in messages 
           li.recent-replies
-            img.recent-replies-img(src="/images/replies.png", alt="")
+            img.recent-replies-img(src="/images/favicon.ico", alt="")
             div.recent-replies-wrapper
               if msg.message.length >= 30
                 a(target="_self" href="/view/thread/" + msg.thread_id + '/?page=' + msg.get_page + '#r' + msg._id)
