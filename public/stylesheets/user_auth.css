@@ -1,0 +1,156 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  font-family: Roboto, "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #739E82;
+}
+
+
+a {
+  color: #cff0ff;
+  text-decoration: none;
+  margin: 0px;
+  padding: 0px;
+}
+  
+h1,
+p {
+  margin: 0px;
+}
+
+#content-container {
+  display: flex;
+  flex-direction: row;
+}
+
+#content-wrapper {
+  height: 100vh;
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+}
+
+#tagline-content { 
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url('/images/bg-login.jpg') no-repeat center fixed;
+  background-size: cover;
+  width: 70vw;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: white;
+}
+
+#footer-container {
+  margin-top: auto;
+  text-align: center;
+  width: 100%;
+  padding: 10px 0px;
+  color: white;
+  font-family: Tilt Neon;
+  background-color: #263D42;
+}
+  
+#footer-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  
+#footer-text-two {
+  font-size: 0.7rem;
+}
+
+#header-container {
+  display: flex;
+  flex-direction: column;
+}
+  
+#thread-title-wrapper > hr {
+  margin: 10px 0px;
+}
+  
+#thread-wrapper > hr {
+    margin: 20px 0px 0px 0px;
+    color: white;
+}
+  
+#title-text-wrapper {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+  
+#site-title {
+  font-size: 2.5rem;
+  color: white;
+  text-shadow: 3px 3px rgb(49, 49, 49);
+  font-family: Alkatra;
+  padding-bottom: none;
+  margin: 0px;
+}
+  
+#site-logo {
+  height: 64px;
+  align-self: center;
+}
+
+#title-tag {
+  font-size: 1.1rem;
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 1px rgb(49, 49, 49);
+  font-family: Alkatra;
+  margin-top: 0px
+}
+
+#form-wrapper {
+  margin: 5px;
+  padding: 10px
+}
+
+.form-login {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  gap: 10px;
+  align-self: center;
+  padding: 5px;
+}
+
+.form-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: #263D42;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.form-controls {
+  font-size: 1rem;
+  margin: 5px 0;
+  padding: 10px;
+  border: none;
+}
+
+#signup-text {
+  margin-top: 30px;
+  text-align: center;
+}
+
+#btn-login {
+  font-size: 1rem;
+  padding: 12px;
+  border-radius: 10px;
+  outline: 0px;
+  border: 0px;
+  align-self: center;
+  cursor: pointer;
+  background-color: #337c70;
+  color: white;
+  min-width: 100px
+}
+
+#text-wrapper {
+    margin-right: 50px;
+}

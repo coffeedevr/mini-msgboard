@@ -2,11 +2,7 @@ body {
   padding: 0px;
   margin: 0px;
   font-family: Roboto, "Lucida Grande", Helvetica, Arial, sans-serif;
-  /* background-color: #511C29; */
   background-color: #739E82;
-  /* background-image: url('../images/background.jpg');
-  background-position: fixed;
-  background-repeat: no-repeat; */
 }
 
 svg {
@@ -146,6 +142,7 @@ p {
   background-color: rgb(226, 226, 226);
   border-radius: 20px;
   box-shadow: 7px 7px 5px #2c2c2c;
+  min-height: 500px;
 }
 
 #create-thread-wrapper {
@@ -451,7 +448,7 @@ p {
   width: 100%;
   padding: 8px 0px;
   color: white;
-  font-family: Tilt Neon
+  font-family: Tilt Neon;
 }
 
 #footer-text {
@@ -580,4 +577,8 @@ p {
 #signup-text {
   text-align: center;
   margin: 40px 10px 10px 10px;
+}
+
+#text-wrapper {
+  margin-right: 10px;
 }
