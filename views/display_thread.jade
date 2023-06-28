@@ -6,17 +6,16 @@ block content
       a(href="/")
         svg(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24")
           path(d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z")
-      h2 / View Thread
+      h2 View Thread
     div#thread-wrapper
       div#thread-header
         div#thread-display
           if thread.flair == 'Discussion'
-            img.thread-logo.f(src="/images/thread-discuss.png")
+            img.thread-logo(src="/images/thread-discuss.png")
           if thread.flair == 'General'
             img.thread-logo(src="/images/thread-general.png")
           if thread.flair == 'Question'
-            img.thread-logo(src="/images/thread-question.png")/
-          
+            img.thread-logo(src="/images/thread-question.png")
         div#thread-title-wrapper
           a.thread-title(target="_self" href="/view/thread/" + thread._id)
             p.thread-flair(class=thread.flair) #{thread.flair}

@@ -88,6 +88,14 @@ p {
   align-items: center;
 }
 
+.login-header a {
+  margin-left: 5px;
+}
+
+.login-header a:hover{
+  text-decoration: underline;
+}
+
 #header-wrapper {
   margin-bottom: 15px;
 }

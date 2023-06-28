@@ -37,7 +37,7 @@ block content
                 - }
           if replies[key].length
             div.thread-last-reply
-              a(href='/view/thread/' + replies[key][0].thread_id + '/?page=' + replies[key][0].get_page + '#r' + replies[key][0]._id)
+              a(href='/view/thread/' + replies[key][0].thread_id + '?page=' + replies[key][0].get_page + '#r' + replies[key][0]._id)
                 p.last-reply-msg= 'Last reply at ' + replies[key][0].date_created_formatted
                 p.last-reply-date= 'by ' + replies[key][0].user
       else 
@@ -46,9 +46,9 @@ block content
     div.thread-controls
       div#page-threads
         if prevpage >= 1
-          a.page-controls(href="/?page=" + prevpage) Prev
+          a.page-controls(href="?page=" + prevpage) Prev
         if nextpage > 1 && nextpage != page
-          a.page-controls(href="/?page=" + nextpage) Next
+          a.page-controls(href="?page=" + nextpage) Next
   div#sidebar-content
     .rules-content
       div.sidebar-header
@@ -80,10 +80,10 @@ block content
             img.recent-replies-img(src="/images/favicon.ico", alt="")
             div.recent-replies-wrapper
               if msg.message.length >= 30
-                a(target="_self" href="/view/thread/" + msg.thread_id + '/?page=' + msg.get_page + '#r' + msg._id)
+                a(target="_self" href="/view/thread/" + msg.thread_id + '?page=' + msg.get_page + '#r' + msg._id)
                   p.recent-replies-msg= msg.message.slice(0, 30) + "..."
               else
-                a(target="_self" href="/view/thread/" + msg.thread_id + '/?page=' + msg.get_page + '#r' + msg._id)
+                a(target="_self" href="/view/thread/" + msg.thread_id + '?page=' + msg.get_page + '#r' + msg._id)
                   p.recent-replies-msg #{msg.message}
               p.recent-replies-user replied by #{msg.user} <br/>
                 | #{msg.date_created_formatted} • 
