@@ -22,7 +22,7 @@ block content
             p.thread-flair(class=thread.flair) #{thread.flair}
             p.display-thread-title-text #{thread.title}
           div.thread-details
-            p.thread-user by #{thread.user} • #{thread.date_created_formatted}
+            p.thread-user by #{thread.user.username} • #{thread.date_created_formatted}
           hr
           div#thread-msg-content
             p#thread-msg #{thread.message}

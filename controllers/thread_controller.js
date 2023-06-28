@@ -13,6 +13,7 @@ exports.display_thread = asyncHandler(async (req, res, next) => {
   const [threadsCount, threadsRes, recentMsgs, totalMsgs, totalAcc] = await Promise.all([
     Thread.countDocuments().exec(),
     Thread.find()
+      .populate('user')
       .limit(10)
       .skip(skipped)
       .sort({date_created: req.query.order})
@@ -70,7 +71,7 @@ exports.create_thread_post = [
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req)
-    const thread = new Thread({ user: req.user.username, title: req.body.title, message: req.body.message, date_created: req.body.date_created, flair: req.body.flair})
+    const thread = new Thread({ user: req.user._id, title: req.body.title, message: req.body.message, date_created: req.body.date_created, flair: req.body.flair})
 
     if (!errors.isEmpty()) {
       res.render("create_thread", {
@@ -90,6 +91,7 @@ exports.display_thread_indv = asyncHandler(async (req, res, next) => {
 
   const [thread, msgsCount, messages] = await Promise.all([
     Thread.findById(req.params.thread )
+     .populate('user')
      .exec(),
     Message.find({ thread_id: req.params.thread })
      .countDocuments(),

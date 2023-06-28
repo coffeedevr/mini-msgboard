@@ -26,7 +26,7 @@ block content
               p.thread-flair(class=thread.flair) #{thread.flair}
               p.thread-title-text #{thread.title}
             div.thread-details
-              p.index-thread-user by #{thread.user} • #{thread.date_created_formatted}
+              p.index-thread-user by #{thread.user.username} • #{thread.date_created_formatted}
               p.thread-pages
                 - for (let i = threadpage[key]; i >= 1; i--) {
                   -  if ((threadpage[key] - 3) == i) {
