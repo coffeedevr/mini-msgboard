@@ -3,10 +3,10 @@ const Schema = mongoose.Schema
 const { DateTime, Interval } = require("luxon");
 
 const MessageSchema = new Schema({
-    user: { type: String, maxLength: 18},
+    user: { type: Schema.Types.ObjectId, ref: "Account", required: true },
     message: { type: String, maxLength: 320, required: true},
     date_created: { type: Date, required: true },
-    thread_id: { type: Schema.Types.ObjectId },
+    thread_id: { type: Schema.Types.ObjectId, ref: "Thread", required: true },
     msgno: { type: Number }
 }, { collection: 'messages' })
 

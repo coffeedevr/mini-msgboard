@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 const { DateTime, Interval } = require("luxon");
 
 const ThreadSchema = new Schema({
-    user: { type: String, maxLength: 18},
+    user: { type: Schema.Types.ObjectId, ref: "Account", required: true },
     title: { type: String, maxLength: 64, required: true},
     message: { type: String, maxLength: 360, required: true},
     date_created: { type: Date },

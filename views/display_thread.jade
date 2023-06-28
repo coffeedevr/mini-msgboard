@@ -31,10 +31,16 @@ block content
           ul#replies-list
             each msg in messages
                 li.replies(id='r' + msg._id)
-                  img.reply-avatar(src="/images/user.png")
-                  div.reply-msg-wrapper
-                    p.reply-msg-user #{msg.user} • #{msg.date_created_formatted}
-                    p.reply-msg-content #{msg.message}
+                  if(msg.id === user._id)
+                    img.reply-avatar(src="/images/user.png")
+                    div.reply-msg-wrapper
+                      p.reply-msg-user #{msg.user.username} • #{msg.date_created_formatted}
+                      p.reply-msg-content #{msg.message}
+                  else 
+                    img.reply-avatar(src="/images/user.png")
+                    div.reply-msg-wrapper
+                      p.reply-msg-user #{msg.user.username} • #{msg.date_created_formatted}
+                      p.reply-msg-content #{msg.message}
             else 
               p No replies yet.
                 

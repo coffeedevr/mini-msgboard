@@ -94,6 +94,7 @@ exports.display_thread_indv = asyncHandler(async (req, res, next) => {
     Message.find({ thread_id: req.params.thread })
      .countDocuments(),
     Message.find({ thread_id: req.params.thread })
+     .populate('user')
      .limit(10)
      .skip(skipped)
      .sort({date_created: "asc"})
@@ -139,8 +140,8 @@ exports.create_reply = [
     const nextpage = () => {
       return page < getLastPage ? page + 1 : getLastPage
     }
-    
-    const message = new Message({user: req.user.username, message: req.body.message, date_created: req.body.date_created, thread_id: req.body.thread_id, msgno: msgsCount + 1})
+
+    const message = new Message({user: req.user._id, message: req.body.message, date_created: req.body.date_created, thread_id: req.body.thread_id, msgno: msgsCount + 1})
 
     if (!errors.isEmpty()) {
         res.render('display_thread', { thread: thread, messages: messages, page: page, nextpage: nextpage(), prevpage: prevpage, errors: errors.array()})
