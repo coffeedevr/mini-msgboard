@@ -626,3 +626,7 @@ p {
   text-align: center;
   margin: 40px 10px 10px 10px;
 }
+
+.own {
+  background-color: #5c8891;
+}
