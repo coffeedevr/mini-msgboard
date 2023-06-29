@@ -11,6 +11,6 @@ router.get('/thread/new', ensureAuthenticated, thread_controller.create_thread_g
 router.post('/thread/new', ensureAuthenticated, thread_controller.create_thread_post)
 
 router.get('/thread/:thread', thread_controller.display_thread_indv)
-router.post('/thread/:thread', ensureAuthenticated, thread_controller.create_reply)
+router.post('/post-reply', ensureAuthenticated, thread_controller.create_reply)
 
 module.exports = router;

@@ -107,9 +107,9 @@ exports.display_thread_indv = asyncHandler(async (req, res, next) => {
     const prevpage = parseInt(page) - 1
     const nextpage = () => { return pageInt < lastpage(msgsCount) ? pageInt + 1 : lastpage()}
     
-    res.render('display_thread', { thread: thread, messages: messages, page: page, nextpage: nextpage(), prevpage: prevpage})
+    res.render('display_thread', { thread: thread, messages: messages, page: page, nextpage: nextpage(), prevpage: prevpage, editreply: req.query.editreply})
   } else {
-    res.render('display_thread', { thread: thread, messages: messages })
+    res.render('display_thread', { thread: thread, messages: messages, editreply: req.query.editreply })
   }
 })
 

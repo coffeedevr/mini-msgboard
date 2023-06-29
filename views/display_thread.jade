@@ -35,19 +35,37 @@ block content
                     img.reply-avatar(src="/images/user.png")
                     div.reply-msg-wrapper
                       p.reply-msg-user #{msg.user.username} • #{msg.date_created_formatted}
-                      p.reply-msg-content #{msg.message}
+                        form#form-edit-reply(method="POST" action="/view/edit-reply")
+                          if editreply
+                            if(msg._id.toString() == editreply.toString())
+                              textarea#edit-text.form-controls(type="text" for="message" name="message" rows="5" resize="false") #{msg.message}
+                              .reply-controls
+                                button.edit-toggle-btn(type="submit") Submit
+                                a.edit-toggle-btn(href="/view/thread/" + thread._id) Cancel
+                            else
+                              textarea.form-controls(type="text" for="message" name="message" rows="5" resize="false" disabled="true") #{msg.message}
+                              .reply-controls
+                                a.edit-toggle-btn(href="/view/thread/" + thread._id + "?editreply=" + msg.id + "#r" + msg.id target="_parent") Edit
+                                a.delete-btn Delete
+                          else
+                            textarea.form-controls(type="text" for="message" name="message" rows="5" resize="false" disabled="true") #{msg.message}
+                            .reply-controls
+                              a.edit-toggle-btn(href="/view/thread/" + thread._id + "?editreply=" + msg.id + "#r" + msg.id) Edit
+                              a.delete-btn Delete
                 else
                   li.replies(id='r' + msg._id)
                     img.reply-avatar(src="/images/user.png")
                     div.reply-msg-wrapper
                       p.reply-msg-user #{msg.user.username} • #{msg.date_created_formatted}
-                      p.reply-msg-content #{msg.message}
+                        form#form-edit-reply(method="POST" action="/view/post-reply")
+                          textarea.form-controls(type="text" for="message" id="message" name="message" rows="5" resize="false" disabled="true") #{msg.message}
               else
                 li.replies(id='r' + msg._id)
                     img.reply-avatar(src="/images/user.png")
                     div.reply-msg-wrapper
                       p.reply-msg-user #{msg.user.username} • #{msg.date_created_formatted}
-                      p.reply-msg-content #{msg.message}
+                      form#form-edit-reply(method="POST" action="/view/post-reply")
+                        textarea.form-controls(type="text" for="message" id="message" name="message" rows="5" resize="false" disabled="true") #{msg.message}
             else 
               p No replies yet.
                 
@@ -62,7 +80,7 @@ block content
         div#reply-wrapper
           form#reply-account
             img.reply-avatar(src='/images/user.png')
-          form#form-reply(method="POST" action="")
+          form#form-reply(method="POST" action="/view/post-reply")
             label(for="message") Enter your reply:
             textarea.form-controls(type="text" for="message" id="message" name="message" rows="5" resize="false")
             input#date_created.form-controls(type="hidden" value=new Date() name="date_created")

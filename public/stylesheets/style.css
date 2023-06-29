@@ -461,7 +461,7 @@ p {
   display: flex;
   align-items: center;
   gap: 5px;
-  padding: 20px 20px;
+  padding: 10px 20px;
   background-color: rgb(226, 226, 226);
   border-radius: 5px;
 }
@@ -472,12 +472,18 @@ p {
   flex: 1;
 }
 
-.reply-msg-content {
-  margin-top: 5px;
-  border-radius: 10px;
-  min-height: 50px;
-  background-color: white;
-  padding: 10px;
+#form-edit-reply {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 5px;
+  flex-grow: 1;
+}
+
+#form-edit-reply textarea {
+  resize: none;
+  font-size: 1rem;
+  outline: none;
 }
 
 #form-reply {
@@ -487,6 +493,23 @@ p {
   background-color: #C8D5B9;
   border-radius: 5px;
   flex-grow: 1;
+}
+
+.reply-controls {
+  align-self: flex-end;
+}
+
+.delete-btn,
+.edit-toggle-btn {
+  padding: 5px;
+  background-color: transparent;
+  border: none;
+  font-size: 0.8rem;
+}
+
+.delete-btn,
+.edit-toggle-btn:hover {
+  cursor: pointer;
 }
 
 #form-reply #message {
